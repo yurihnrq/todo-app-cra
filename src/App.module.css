@@ -1,0 +1,7 @@
+.App {
+	@apply flex w-full justify-center;
+}
+
+.App h1{
+	@apply text-xl;
+}
