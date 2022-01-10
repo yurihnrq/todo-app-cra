@@ -1,0 +1,30 @@
+.Header {
+	@apply grid grid-cols-1 md:grid-cols-2 p-4;
+	@apply bg-gradient-to-r from-blue-500 to-blue-600;
+	@apply text-gray-100;
+}
+
+.Header .logo {
+	@apply flex flex-row justify-center align-middle md:justify-start;
+	@apply text-2xl
+}
+
+.Header .logo span {
+	@apply align-middle
+}
+
+.Header .logo svg {
+	height: 3rem;
+}
+
+.Header .nav {
+	@apply flex flex-col justify-end md:flex-row;
+}
+
+.Header .nav .link {
+	@apply m-2;
+}
+
+.Header .nav .link span {
+	@apply align-middle;
+}

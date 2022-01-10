@@ -1,0 +1,7 @@
+.Layout {
+	@apply flex flex-col justify-center;
+}
+
+.Layout .content {
+	@apply p-8;
+}
