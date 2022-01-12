@@ -1,3 +1,8 @@
 .Footer {
-	
+	@apply fixed bottom-0 border-t-2 w-full text-xs bg-gray-100;
+	@apply text-center
+}
+
+.Footer p {
+	@apply m-5;
 }

@@ -1,0 +1,15 @@
+.Table {
+	@apply table-auto mb-5;
+}
+
+.Table td {
+	@apply py-3;
+}
+
+.Table svg{
+	@apply h-6;
+}
+
+.Table .removeButton {
+	@apply bg-gradient-to-tl from-green-500 to-emerald-600;
+}

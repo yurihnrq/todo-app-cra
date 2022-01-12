@@ -5,23 +5,23 @@ import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 
 
-const Header = () => {
+const Header: React.FC = () => {
 	return (
 		<header className={styles.Header}>
-			<div className={styles.logo}>
-				{CheckIcon}
-				<Link to="/">
+			<Link to="/" className={styles.logo}>
+				<div>
+					{CheckIcon}
 					<span>
 						ToDo App
 					</span>
-				</Link>
-			</div>
+				</div>
+			</Link>
 			<nav className={styles.nav}>
-				<Link className={styles.link} to="/">
-					<span>Home</span>
+				<Link to="/">
+					Home
 				</Link>
-				<Link className={styles.link} to="/sobre">
-					<span>Sobre</span>
+				<Link to="/sobre">
+					Sobre
 				</Link>
 			</nav>
 		</header>

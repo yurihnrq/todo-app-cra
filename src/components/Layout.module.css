@@ -1,7 +1,7 @@
 .Layout {
-	@apply flex flex-col justify-center;
+	@apply min-h-fit;
 }
 
 .Layout .content {
-	@apply p-8;
+	@apply p-8 overflow-auto relative;
 }

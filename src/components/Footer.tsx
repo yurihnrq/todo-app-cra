@@ -1,14 +1,12 @@
 import React from "react";
 import styles from "./Footer.module.css";
 
-const Footer = () => {
+const Footer: React.FC = () => {
 	return (
 		<footer className={styles.Footer}>
-			<section>
-				<p>
-					App desenvolvido por Yuri Henrique B. Maciel.
-				</p>
-			</section>
+			<p>
+				App desenvolvido por Yuri Henrique B. Maciel.
+			</p>
 		</footer>
 	);
 };
