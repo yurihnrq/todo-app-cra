@@ -1,0 +1,22 @@
+.About {
+	@apply p-8;
+}
+
+.About h1 {
+	@apply text-2xl mb-3;
+}
+
+.About p {
+	@apply text-justify mb-2;
+}
+
+.About ul {
+	@apply pl-8 list-disc
+}
+.About ul li {
+	@apply my-1;
+}
+
+.About ul li::marker {
+	content: "➡️";
+}

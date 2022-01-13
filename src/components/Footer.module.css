@@ -1,5 +1,5 @@
 .Footer {
-	@apply fixed bottom-0 border-t-2 w-full text-xs bg-gray-100;
+	@apply border-t-2 w-full text-xs bg-gray-100;
 	@apply text-center
 }
 

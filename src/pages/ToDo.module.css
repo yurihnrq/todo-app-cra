@@ -4,7 +4,8 @@
 
 .ToDo .addButton {
 	@apply w-fit rounded-full m-auto pl-4 pr-2 py-1;
-	@apply bg-gradient-to-bl from-orange-500 to-red-500;
+	@apply bg-gradient-to-bl from-green-600 to-emerald-500;
+	@apply hover:bg-gradient-to-bl hover:from-green-500 hover:to-emerald-400;
 	@apply text-white;
 }
 
