@@ -6,6 +6,10 @@
 	@apply text-2xl mb-3;
 }
 
+.About h2 {
+	@apply text-xl mb-2;
+}
+
 .About p {
 	@apply text-justify mb-2;
 }

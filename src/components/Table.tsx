@@ -15,20 +15,22 @@ const Table: React.FC<ITable> = ({ todos }) => {
 	};
 
 	const renderTodos = () => {
-		return todos?.map((todo: ToDo): React.ReactNode => {
+		return todos?.map((todo: ToDo, i: number): React.ReactNode => {
 			return (
 				<tr key={todo.id}>
 					<td>
-						<input type="checkbox" checked={todo.done} onChange={() => handleCheckbox(todo.id)} />
+						<input type="checkbox" id={i.toString()} checked={todo.done} onChange={() => handleCheckbox(todo.id)} />
 					</td>
 					<td>
-						{todo.description}
+						<label htmlFor={i.toString()}>
+							{todo.description}
+						</label>
 					</td>
 					<td>
 						{todo.createdAt.getTime()}
 					</td>
 					<td>
-						<button className={styles.removeButton}>
+						<button className={styles.removeButton} aria-label="Delete ToDo">
 							{TrashIcon}
 						</button>
 					</td>
