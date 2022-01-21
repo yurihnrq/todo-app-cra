@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import { CheckIcon, MenuIcon, CloseIcon } from "./Icons";
-import styles from "./Header.module.css";
+import { CheckIcon, MenuIcon, CloseIcon } from './Icons';
+import styles from './Header.module.css';
 
 
 const Header: React.FC = () => {
@@ -11,7 +11,7 @@ const Header: React.FC = () => {
 
 	return (
 		<header className={styles.Header}>
-			<Link to="/" className={styles.logo}>
+			<Link to='/' className={styles.logo}>
 				<div>
 					{CheckIcon}
 					<span>
@@ -20,7 +20,7 @@ const Header: React.FC = () => {
 				</div>
 			</Link>
 			<button
-				className={styles.navButton} aria-label="Open mobile navbar"
+				className={styles.navButton} aria-label='Open mobile navbar'
 				onClick={() => setSideNav(!sideNav)}
 			>
 				{MenuIcon}
@@ -28,10 +28,10 @@ const Header: React.FC = () => {
 			{
 				!sideNav ? (
 					<nav className={styles.nav}>
-						<Link to="/">
+						<Link to='/'>
 							Home
 						</Link>
-						<Link to="/sobre">
+						<Link to='/sobre'>
 							Sobre
 						</Link>
 					</nav>
@@ -39,17 +39,17 @@ const Header: React.FC = () => {
 					<div className={styles.sideNav}>
 						<div>
 							<button
-								aria-label="Close mobile navbar"
+								aria-label='Close mobile navbar'
 								onClick={() => setSideNav(!sideNav)}
 							>
 								{CloseIcon}
 							</button>
 						</div>
 						<nav>
-							<Link to="/" onClick={() => setSideNav(!sideNav)}>
+							<Link to='/' onClick={() => setSideNav(!sideNav)}>
 								Home
 							</Link>
-							<Link to="/sobre" onClick={() => setSideNav(!sideNav)}>
+							<Link to='/sobre' onClick={() => setSideNav(!sideNav)}>
 								Sobre
 							</Link>
 						</nav>

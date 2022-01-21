@@ -1,4 +1,4 @@
-module.exports = {
+{
 	"env": {
 		"browser": true,
 		"es2021": true,
@@ -21,6 +21,11 @@ module.exports = {
 		"react",
 		"@typescript-eslint"
 	],
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
+	},
 	"rules": {
 		"indent": [
 			"error",
@@ -32,7 +37,11 @@ module.exports = {
 		],
 		"quotes": [
 			"error",
-			"double"
+			"single"
+		],
+		"jsx-quotes": [
+			"error",
+			"prefer-single"
 		],
 		"semi": [
 			"error",
@@ -51,4 +60,4 @@ module.exports = {
 		"no-unused-vars": "warn",
 		"eol-last": "warn"
 	}
-};
+}

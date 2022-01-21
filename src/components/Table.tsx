@@ -1,8 +1,8 @@
-import React from "react";
-import ToDo from "../core/ToDo";
-import { TrashIcon } from "./Icons";
+import React from 'react';
+import ToDo from '../core/ToDo';
+import { TrashIcon } from './Icons';
 
-import styles from "./Table.module.css";
+import styles from './Table.module.css';
 
 interface ITable {
 	todos: ToDo[]
@@ -19,7 +19,7 @@ const Table: React.FC<ITable> = ({ todos }) => {
 			return (
 				<tr key={todo.id}>
 					<td>
-						<input type="checkbox" id={i.toString()} checked={todo.done} onChange={() => handleCheckbox(todo.id)} />
+						<input type='checkbox' id={i.toString()} checked={todo.done} onChange={() => handleCheckbox(todo.id)} />
 					</td>
 					<td>
 						<label htmlFor={i.toString()}>
@@ -30,7 +30,7 @@ const Table: React.FC<ITable> = ({ todos }) => {
 						{todo.createdAt.getTime()}
 					</td>
 					<td>
-						<button className={styles.removeButton} aria-label="Delete ToDo">
+						<button className={styles.removeButton} aria-label='Delete ToDo'>
 							{TrashIcon}
 						</button>
 					</td>

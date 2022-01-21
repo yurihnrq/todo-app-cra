@@ -1,6 +1,6 @@
-import React from "react";
-import Layout from "../components/Layout";
-import styles from "./About.module.css";
+import React from 'react';
+import Layout from '../components/Layout';
+import styles from './About.module.css';
 
 const About: React.FC = () => {
 	return (
