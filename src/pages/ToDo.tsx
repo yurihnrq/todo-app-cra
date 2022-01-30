@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import { PlusIcon } from '../components/Icons';
+import Button from '../components/Button';
 
 import styles from './ToDo.module.css';
 import Table from '../components/Table';
@@ -23,12 +24,9 @@ const Home: React.FC = () => {
 		<Layout>
 			<section className={styles.ToDo}>
 				<Table todos={todos} />
-				<button className={styles.addButton}>
-					<div>
-						<span>Add ToDo</span>
-						{PlusIcon}
-					</div>
-				</button>
+				<Button className={`${styles.addButton} mx-auto`} color='green' label='Add ToDo Button'>
+					{PlusIcon} Add ToDo
+				</Button>
 			</section>
 		</Layout>
 	);

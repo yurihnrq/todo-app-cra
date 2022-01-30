@@ -1,18 +1,11 @@
 .ToDo {
-	@apply flex flex-col justify-center
+    @apply flex flex-col justify-center
 }
 
 .ToDo .addButton {
-	@apply w-fit rounded-full m-auto pl-4 pr-2 py-1;
-	@apply bg-gradient-to-bl from-green-600 to-emerald-500;
-	@apply hover:bg-gradient-to-bl hover:from-green-500 hover:to-emerald-400;
-	@apply text-white;
+    @apply flex flex-row items-center pr-4;
 }
 
 .ToDo .addButton svg {
-	@apply h-8 inline;
-}
-
-.ToDo .addButton span {
-	@apply align-middle;
+    @apply h-8 inline;
 }

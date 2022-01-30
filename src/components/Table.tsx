@@ -1,6 +1,7 @@
 import React from 'react';
 import ToDo from '../core/ToDo';
 import { TrashIcon } from './Icons';
+import Button from './Button';
 
 import styles from './Table.module.css';
 
@@ -30,9 +31,9 @@ const Table: React.FC<ITable> = ({ todos }) => {
 						{todo.createdAt.getTime()}
 					</td>
 					<td>
-						<button className={styles.removeButton} aria-label='Delete ToDo'>
+						<Button color='red' label='Delete ToDo'>
 							{TrashIcon}
-						</button>
+						</Button>
 					</td>
 				</tr>
 			);

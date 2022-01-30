@@ -1,0 +1,5 @@
+.Button {
+    @apply text-white bg-gradient-to-tl;
+    @apply hover:bg-gradient-to-tr;
+    @apply p-2 rounded-full w-fit;
+}
