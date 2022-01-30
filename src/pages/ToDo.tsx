@@ -1,32 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
-import { PlusIcon } from '../components/Icons';
-import Button from '../components/Button';
+import Table from '../components/Table';
+import Form from '../components/Form';
 
 import styles from './ToDo.module.css';
-import Table from '../components/Table';
 import ToDo from '../core/ToDo';
 
 const Home: React.FC = () => {
 
-	const todos: ToDo[] = [];
-	todos.push(new ToDo('Testar app', false, new Date(), '8h3h3cna693xlp'));
-	todos.push(new ToDo('Implementar componente Table', false, new Date(), '8h3h3cna693plp'));
-	todos.push(new ToDo('Terminar projeto', false, new Date(), '8h3h3cna693tnt'));
-	todos.push(new ToDo('Utilizar TypeScript', false, new Date(), '8h3h3cna693kgp'));
-	todos.push(new ToDo('Página about', false, new Date(), '8h3h3cna693xlo'));
-	todos.push(new ToDo('Completar estilos', false, new Date(), '8h3h3cna693pl1'));
-	todos.push(new ToDo('Utilizar git', false, new Date(), '8h3h3cna693tn1'));
-	todos.push(new ToDo('Utilizar React', false, new Date(), '8h3h3cna693kg2'));
-	todos.push(new ToDo('Finalizar app', false, new Date(), '8h3h3cna693xl4'));
-	
+	const [todos, setTodos] = useState<ToDo[]>([]);
+	// Just for initial implementation.
+	// This counter is used do generate ids for the todos in the list.
+	const [count, setCount] = useState<number>(0);
+
+	// Increment the counter when the todo list is updated.
+	useEffect(() => {
+		setCount(count + 1);
+	}, [todos]);
+
+	const addTodo = (todo: string): void => {
+		const newTodo = new ToDo(todo, false, new Date(), count.toString());
+		setTodos(todos => [...todos, newTodo]);
+	};
+
+	const deleteToDo = ({ id }: ToDo): boolean => {
+		const todoHandler = [...todos];
+		const index = todoHandler.findIndex(todo => todo.id === id);
+
+		if (index < 0)
+			return false;
+
+		todoHandler.splice(index, 1);
+		setTodos([...todoHandler]);
+		return true;
+	};
+
+	const checkTodo = ({ id }: ToDo): void => {
+		const todoHandler = [...todos];
+		const index = todoHandler.findIndex(todo => todo.id === id);
+
+		if (index >= 0) todoHandler[index].done = !todoHandler[index].done;
+
+		setTodos([...todoHandler]);
+	};
+
 	return (
 		<Layout>
 			<section className={styles.ToDo}>
-				<Table todos={todos} />
-				<Button className={`${styles.addButton} mx-auto`} color='green' label='Add ToDo Button'>
-					{PlusIcon} Add ToDo
-				</Button>
+				<h2>ToDos</h2>
+				<Form action={addTodo} />
+				<Table deleteAction={deleteToDo} checkAction={checkTodo} todos={todos} />
 			</section>
 		</Layout>
 	);

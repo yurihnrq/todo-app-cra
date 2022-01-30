@@ -5,12 +5,16 @@ import styles from './Button.module.css';
 interface IButton {
 	className?: string,
 	label: string,
-	color: 'red' | 'blue' | 'green'
+	color: 'red' | 'blue' | 'green',
+	onClick?: React.MouseEventHandler<HTMLButtonElement>
 }
 
-const Button: React.FC<IButton> = ({ className, children, label, color }) => {
+const Button: React.FC<IButton> = ({ className, children, label, color, onClick }) => {
 	return (
-		<button className={`${styles.Button} ${className} ${colors[color]}`} aria-label={label}>
+		<button
+			className={`${styles.Button} ${className} ${colors[color]}`}
+			aria-label={label} onClick={onClick}
+		>
 			{children}
 		</button>
 	);

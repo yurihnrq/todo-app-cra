@@ -57,7 +57,6 @@
 				"position": "above"
 			}
 		],
-		"no-unused-vars": "warn",
 		"eol-last": "warn"
 	}
 }

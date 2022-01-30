@@ -6,32 +6,31 @@ import Button from './Button';
 import styles from './Table.module.css';
 
 interface ITable {
-	todos: ToDo[]
+	todos: ToDo[],
+	deleteAction: (todo: ToDo) => boolean
+	checkAction: (todo: ToDo) => void
 }
 
-const Table: React.FC<ITable> = ({ todos }) => {
-
-	const handleCheckbox = (todoID: string | null): void => {
-		return console.log(todoID);
-	};
+const Table: React.FC<ITable> = ({ todos, deleteAction, checkAction }) => {
 
 	const renderTodos = () => {
+
 		return todos?.map((todo: ToDo, i: number): React.ReactNode => {
 			return (
-				<tr key={todo.id}>
+				<tr className={styles.row} key={todo.id}>
 					<td>
-						<input type='checkbox' id={i.toString()} checked={todo.done} onChange={() => handleCheckbox(todo.id)} />
+						<input type='checkbox' id={i.toString()} checked={todo.done} onChange={() => checkAction(todo)} />
 					</td>
 					<td>
 						<label htmlFor={i.toString()}>
 							{todo.description}
 						</label>
 					</td>
-					<td>
-						{todo.createdAt.getTime()}
+					<td className={styles.date}>
+						{todo.createdAt.toLocaleDateString('pt-BR')}
 					</td>
 					<td>
-						<Button color='red' label='Delete ToDo'>
+						<Button onClick={() => deleteAction(todo)} color='red' label='Delete ToDo'>
 							{TrashIcon}
 						</Button>
 					</td>
@@ -42,11 +41,6 @@ const Table: React.FC<ITable> = ({ todos }) => {
 
 	return (
 		<table className={styles.Table}>
-			<thead>
-				<tr>
-					<th colSpan={4}>ToDos</th>
-				</tr>
-			</thead>
 			<tbody>
 				{renderTodos()}
 			</tbody>

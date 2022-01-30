@@ -23,6 +23,10 @@ class ToDo {
 		return this.#done;
 	}
 
+	set done(done: boolean) {
+		this.#done = done;
+	}
+
 	get createdAt() {
 		return this.#createdAt;
 	}

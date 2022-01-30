@@ -29,7 +29,7 @@
 }
 
 .Header .sideNav {
-	@apply absolute w-screen h-screen top-0 left-0 px-4;
+	@apply absolute w-screen h-screen top-0 left-0 px-4 z-50;
 	@apply bg-gradient-to-tr from-blue-600 to-violet-600;
 }
 
