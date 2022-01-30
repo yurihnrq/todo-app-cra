@@ -29,7 +29,7 @@ const Header: React.FC = () => {
 				!sideNav ? (
 					<nav className={styles.nav}>
 						<Link to='/'>
-							Home
+							Inicio
 						</Link>
 						<Link to='/sobre'>
 							Sobre
@@ -47,7 +47,7 @@ const Header: React.FC = () => {
 						</div>
 						<nav>
 							<Link to='/' onClick={() => setSideNav(!sideNav)}>
-								Home
+								Inicio
 							</Link>
 							<Link to='/sobre' onClick={() => setSideNav(!sideNav)}>
 								Sobre

@@ -1,19 +1,56 @@
 .Table {
-	@apply table-auto mb-5;
+	@apply table-auto mt-5;
 }
 
 .Table th {
 	@apply text-xl;
 }
 
-.Table tr:nth-child(2n) {
+.Table .row:nth-child(2n) {
 	@apply bg-slate-200;
 }
 
-.Table td {
-	@apply py-2;
+.Table .row {
+	@apply p-2 rounded-md;
+	display: grid;
+	grid-template-columns: 0.1fr 1fr 0.3fr 0.2fr;
+	align-items: center;
 }
 
+.Table .row label {
+	@apply w-full text-left pl-4;
+}
+
+.Table .row .date {
+	@apply hidden sm:flex;
+}
+
+.Table td {
+	@apply flex justify-center overflow-auto;
+}
+
+.Table td::-webkit-scrollbar {
+	height: 5px;
+	@apply rounded-lg;
+}
+
+.Table td::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+ 
+ /* Handle */
+.Table td::-webkit-scrollbar-thumb {
+	@apply bg-slate-300 rounded-lg;
+}
+ 
+ /* Handle on hover */
+.Table td::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
+
+.Table td:last-child {
+	@apply justify-end;
+}
 
 .Table svg{
 	@apply h-6;
@@ -23,4 +60,10 @@
 	@apply text-white bg-gradient-to-tl from-red-700 to-orange-600;
 	@apply hover:bg-gradient-to-tl hover:from-red-600 hover:to-orange-500;
 	@apply p-2 rounded-full;
+}
+
+@media (max-width: 640px) {
+	.Table .row {
+		grid-template-columns: 0.1fr 1fr 0.2fr;
+	}
 }

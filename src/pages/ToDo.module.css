@@ -1,11 +1,8 @@
 .ToDo {
-    @apply flex flex-col justify-center
+   @apply flex flex-col justify-center mx-auto;
+	max-width: 800px;
 }
 
-.ToDo .addButton {
-    @apply flex flex-row items-center pr-4;
-}
-
-.ToDo .addButton svg {
-    @apply h-8 inline;
+.ToDo h2 {
+	@apply text-center text-2xl font-semibold text-gray-700 mb-3;
 }

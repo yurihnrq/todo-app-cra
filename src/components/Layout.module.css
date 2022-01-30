@@ -3,5 +3,5 @@
 }
 
 .Layout .content {
-	@apply p-8 overflow-auto h-full;
+	@apply p-8 h-full;
 }
