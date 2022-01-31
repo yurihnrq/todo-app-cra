@@ -1,13 +1,9 @@
 .Table {
-	@apply table-auto mt-5;
+	@apply mt-5;
 }
 
 .Table th {
 	@apply text-xl;
-}
-
-.Table .row:nth-child(2n) {
-	@apply bg-slate-200;
 }
 
 .Table .row {
