@@ -17,7 +17,7 @@ const Table: React.FC<ITable> = ({ todos, deleteAction, checkAction }) => {
 
 		return todos?.map((todo: ToDo, i: number): React.ReactNode => {
 			return (
-				<tr className={styles.row} key={todo.id}>
+				<tr className={`${styles.row} ${i%2 !== 0 ? 'bg-slate-300 dark:bg-slate-700' : ''}`} key={todo.id}>
 					<td>
 						<input type='checkbox' id={i.toString()} checked={todo.done} onChange={() => checkAction(todo)} />
 					</td>
