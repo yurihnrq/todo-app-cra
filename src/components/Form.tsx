@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Button from './Button';
 
 import { PlusIcon } from './Icons';
@@ -23,20 +23,16 @@ const Form: React.FC<IForm> = ({ action }) => {
 		}
 	};
 
-	// useEffect(() => {
-
-	// }, [warning]);
-
 	return (
 		<form className={styles.Form} onSubmit={e => e.preventDefault()}>
 			<div>
 				<input
-					className={styles.todoInput} id='todo' type='text'
-					value={text} onChange={e => setText(e.target.value)}
+					className={`${styles.todoInput} dark:bg-slate-500 dark:text-white`} 
+					id='todo' type='text' value={text} onChange={e => setText(e.target.value)}
 					placeholder='Insira seu a fazer aqui...' maxLength={45}
 				/>
 				{warning ? (
-					<span>
+					<span className='dark:text-red-400'>
 						Você deve inserir ao menos dois caracteres.
 					</span>
 				) : null}
