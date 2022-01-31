@@ -1,5 +1,5 @@
 .Layout {
-	@apply h-screen flex flex-col justify-between relative;
+	@apply h-screen min-h-full flex flex-col justify-between relative;
 }
 
 .Layout .content {

@@ -47,7 +47,7 @@ const Home: React.FC = () => {
 	return (
 		<Layout>
 			<section className={styles.ToDo}>
-				<h2>ToDos</h2>
+				<h2 className='dark:text-slate-200'>ToDos</h2>
 				<Form action={addTodo} />
 				<Table deleteAction={deleteToDo} checkAction={checkTodo} todos={todos} />
 			</section>
