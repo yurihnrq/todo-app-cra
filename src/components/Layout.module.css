@@ -3,5 +3,5 @@
 }
 
 .Layout .content {
-	@apply px-5 pt-4 pb-20 sm:px-8 sm:pt-8 sm:pb-24 h-full;
+	@apply px-4 pt-4 pb-20 sm:px-8 sm:pt-8 sm:pb-24 h-full;
 }
