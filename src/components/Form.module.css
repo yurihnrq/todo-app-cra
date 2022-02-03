@@ -1,5 +1,5 @@
 .Form {
-	@apply flex flex-row items-center justify-center sm:justify-between flex-wrap px-2;
+	@apply flex flex-row items-center justify-center sm:justify-between flex-wrap;
 }
 
 .Form div {
