@@ -1,6 +1,6 @@
 .Footer {
-	@apply border-t-2 w-full text-xs;
-	@apply text-center
+	@apply absolute bottom-0;
+	@apply border-t-2 w-full text-xs text-center;
 }
 
 .Footer p {

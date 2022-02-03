@@ -27,17 +27,25 @@ const Header: React.FC = () => {
 					</span>
 				</div>
 			</Link>
-			<button
-				className={styles.navButton} aria-label='Open mobile navbar'
-				onClick={() => setSideNav(!sideNav)}
-			>
-				{MenuIcon}
-			</button>
+			<div className={styles.buttonContainer}>
+				<button
+					className='p-0 sm:mr-4' aria-label='Change theme'
+					onClick={() => theme === 'light' ? setTheme('dark') : setTheme('light')}
+				>
+					{theme === 'light' ? (MoonIcon) : (SunIcon)}
+				</button>
+				<button
+					aria-label='Open mobile navbar'
+					onClick={() => setSideNav(!sideNav)}
+				>
+					{MenuIcon}
+				</button>
+			</div>
 			{
 				!sideNav ? (
 					<nav className={styles.nav}>
 						<button
-							className='p-0 sm:mr-4'
+							className='p-0 sm:mr-4' aria-label='Change theme'
 							onClick={() => theme === 'light' ? setTheme('dark') : setTheme('light')}
 						>
 							{theme === 'light' ? (MoonIcon) : (SunIcon)}
@@ -52,12 +60,6 @@ const Header: React.FC = () => {
 				) : (
 					<div className={styles.sideNav}>
 						<div>
-							<button
-								className='p-0 sm:mr-4'
-								onClick={() => theme === 'light' ? setTheme('dark') : setTheme('light')}
-							>
-								{theme === 'light' ? (MoonIcon) : (SunIcon)}
-							</button>
 							<button
 								aria-label='Close mobile navbar'
 								onClick={() => setSideNav(!sideNav)}

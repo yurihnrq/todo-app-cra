@@ -26,9 +26,10 @@ const Home: React.FC = () => {
 			setTodos(todos => [...todos, ToDo.fromJSON(todo)]);
 		});
 
-		// Obtenho o contador armazenado no localStorage.
-		const counter: number = JSON.parse(localStorage.getItem('counter') || '0');
-		setCounter(counter);
+		// Obtendo valor do counter armzenado no localStorage.
+		const storedCounter = JSON.parse(localStorage.getItem('counter') || '0');
+		console.log(storedCounter);
+		setCounter(storedCounter);
 	}, []);
 
 	useEffect(() => {
@@ -36,14 +37,10 @@ const Home: React.FC = () => {
 		// JSON.stringify() ira serializar o array de todos e ira notar que cada objeto do array tem uma funçao toJSON().
 		// Desse modo, JSON.stringify() irá utilizar a função toJSON() implementada para serializar cada objeto do array.
 		localStorage.setItem('todos', JSON.stringify(todos));
-		// Se em algum momento não houver todos no array, podemos zerar o contador com segurança.
-		// Com segurança quer dizer que não corremos risco de zerá-lo e causar conflito de ids.
-		if (todos.length == 0)
-			setCounter(0);
 	}, [todos]);
 
 	useEffect(() => {
-		// Atualiza o contador no localStorade sempre que ele muda.
+		// Atualiza o contador no localStorage sempre que ele muda.
 		localStorage.setItem('counter', JSON.stringify(counter));
 	}, [counter]);
 
@@ -61,6 +58,12 @@ const Home: React.FC = () => {
 			return false;
 
 		todoHandler.splice(index, 1);
+
+		// Caso o array de todos fique vazio, podemos zerar o contador com segurança.
+		// Isso que dizer que podemos zerá-lo sem medo de ocorrer conflitos de IDs.
+		if (todoHandler.length <= 0)
+			setCounter(0);
+
 		setTodos([...todoHandler]);
 		return true;
 	};
