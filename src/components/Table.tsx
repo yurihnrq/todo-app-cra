@@ -1,8 +1,7 @@
 import React from 'react';
 import ToDo from '../core/ToDo';
 import { TrashIcon } from './Icons';
-import Button from './Button';
-
+import Button from './layout/Button';
 import styles from './styles/Table.module.css';
 
 interface ITable {

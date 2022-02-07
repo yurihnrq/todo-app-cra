@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Layout from '../components/Layout';
+import Layout from '../components/layout/Layout';
 import Table from '../components/Table';
-import Form from '../components/Form';
+import Form from '../components/TodoForm';
 
 import styles from './ToDo.module.css';
 import ToDo from '../core/ToDo';

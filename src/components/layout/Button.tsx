@@ -1,6 +1,5 @@
 import React from 'react';
-
-import styles from './styles/Button.module.css';
+import styles from '../styles/Button.module.css';
 
 interface IButton {
 	className?: string,

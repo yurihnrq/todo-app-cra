@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import Button from './Button';
-
+import React, { FormEventHandler, useState } from 'react';
+import Button from './layout/Button';
+import Input from './layout/Input';
 import { PlusIcon } from './Icons';
 import styles from './styles/TodoForm.module.css';
 
@@ -13,7 +13,9 @@ const Form: React.FC<IForm> = ({ action }) => {
 	const [text, setText] = useState<string>('');
 	const [warning, setWarning] = useState<boolean>(false);
 
-	const handleInput = () => {
+	const formHandler: FormEventHandler<HTMLFormElement> = (event) => {
+		event.preventDefault();
+
 		if (text.length < 2)
 			setWarning(true);
 		else {
@@ -24,10 +26,9 @@ const Form: React.FC<IForm> = ({ action }) => {
 	};
 
 	return (
-		<form className={styles.Form} onSubmit={e => e.preventDefault()}>
+		<form className={styles.Form} onSubmit={formHandler}>
 			<div>
-				<input
-					className='dark:bg-slate-500 dark:text-white'
+				<Input
 					id='todo' type='text' value={text} onChange={e => setText(e.target.value)}
 					placeholder='Insira seu a fazer aqui...' maxLength={45}
 				/>
@@ -37,7 +38,7 @@ const Form: React.FC<IForm> = ({ action }) => {
 					</span>
 				) : null}
 			</div>
-			<Button onClick={() => handleInput()} className={`${styles.addButton} ml-3`} color='green' label='Add Todo'>
+			<Button className={`${styles.addButton} ml-3`} color='green' label='Add Todo'>
 				{PlusIcon}
 				Adicionar
 			</Button>

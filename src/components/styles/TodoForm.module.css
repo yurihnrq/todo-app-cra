@@ -10,12 +10,6 @@
 	@apply text-sm text-red-600;
 }
 
-.Form input {
-	@apply block w-full h-10 rounded-md px-2;
-	@apply border-2 border-indigo-500;
-	@apply focus:outline-indigo-800 outline-4;
-}
-
 .Form .addButton {
 	@apply flex flex-row items-center pr-4 my-3 sm:my-0;
 
