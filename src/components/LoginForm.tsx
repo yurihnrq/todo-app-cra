@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Input from './layout/Input';
 import Button from './layout/Button';
 import styles from './styles/LoginForm.module.css';
+import { useAuth } from '../context/AuthContext';
 
 const LoginForm: React.FC = () => {
 
@@ -11,6 +12,8 @@ const LoginForm: React.FC = () => {
 
 	const formHandler: FormEventHandler<HTMLFormElement> = (event) => {
 		event.preventDefault();
+
+		useAuth()?.login(email, password);
 	};
 
 	return (
