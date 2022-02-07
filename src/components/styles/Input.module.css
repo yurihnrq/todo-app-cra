@@ -1,5 +1,10 @@
 .Input {
 	@apply block w-full h-10 rounded-md px-2;
 	@apply border-2 border-indigo-500;
-	@apply focus:outline-indigo-800 outline-4;
+	@apply outline-none;
+	transition: all ease-in-out 0.1s;
+}
+
+.Input:focus {
+	box-shadow: 0px 0px 0px 3px rgba(99, 102, 241, 0.4);
 }

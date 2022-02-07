@@ -3,7 +3,7 @@ import Layout from '../components/layout/Layout';
 import Table from '../components/Table';
 import Form from '../components/TodoForm';
 
-import styles from './ToDo.module.css';
+import styles from './styles/ToDo.module.css';
 import ToDo from '../core/ToDo';
 
 const Home: React.FC = () => {
