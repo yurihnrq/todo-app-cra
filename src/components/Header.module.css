@@ -16,12 +16,12 @@
 	@apply h-11 inline;
 }
 
-.Header .navButton {
-	@apply sm:hidden;
+.Header .buttonContainer {
+	@apply flex flex-row justify-center gap-4 sm:hidden;
 }
 
 .Header .nav {
-	@apply h-full hidden sm:flex flex-row justify-end items-center;
+	@apply hidden sm:flex flex-row justify-end items-center;
 }
 
 .Header a {

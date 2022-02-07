@@ -1,5 +1,5 @@
-.About {
-	@apply p-8;
+.About * {
+	@apply sm:text-justify;
 }
 
 .About h1 {
@@ -11,7 +11,7 @@
 }
 
 .About p {
-	@apply text-justify mb-2;
+	@apply mb-2;
 }
 
 .About ul {
