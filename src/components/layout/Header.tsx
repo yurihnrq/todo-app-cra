@@ -56,6 +56,9 @@ const Header: React.FC = () => {
 						<Link to='/sobre'>
 							Sobre
 						</Link>
+						<Link to='/login' onClick={() => setSideNav(!sideNav)}>
+							Login
+						</Link>
 					</nav>
 				) : (
 					<div className={styles.sideNav}>
@@ -73,6 +76,9 @@ const Header: React.FC = () => {
 							</Link>
 							<Link to='/sobre' onClick={() => setSideNav(!sideNav)}>
 								Sobre
+							</Link>
+							<Link to='/login' onClick={() => setSideNav(!sideNav)}>
+								Login
 							</Link>
 						</nav>
 					</div>

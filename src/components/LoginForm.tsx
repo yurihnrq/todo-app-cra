@@ -1,5 +1,7 @@
 import React, { FormEventHandler, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Input from './layout/Input';
+import Button from './layout/Button';
 import styles from './styles/LoginForm.module.css';
 
 const LoginForm: React.FC = () => {
@@ -17,7 +19,7 @@ const LoginForm: React.FC = () => {
 				Email
 			</label>
 			<Input
-				id='email' type='email' value={email}
+				id='email' type='email' value={email} required
 				onChange={(e) => setEmail(e.target.value)}
 				placeholder='email@dominio.com' className='mb-4'
 			/>
@@ -25,10 +27,20 @@ const LoginForm: React.FC = () => {
 				Senha
 			</label>
 			<Input
-				id='password' type='password' value={password}
+				id='password' type='password' value={password} required
 				onChange={(e) => setPassword(e.target.value)}
-				placeholder='Insira sua senha...'
+				placeholder='Insira sua senha...' className='mb-4'
 			/>
+			<Button color='blue' label='Realizar login'>
+				Entrar
+			</Button>
+			<hr className='my-4 bg-slate-300' />
+			<span className='text-sm text-center'>
+				Não possui uma conta? &nbsp;
+				<Link to='/' className={styles.link}>
+					Cadastre-se
+				</Link>
+			</span>
 		</form>
 	);
 };

@@ -1,5 +1,5 @@
 .Button {
-    @apply text-white bg-gradient-to-tl;
-    @apply hover:bg-gradient-to-tr;
-    @apply p-2 rounded-full w-fit;
+   @apply text-white bg-gradient-to-tl;
+   @apply hover:bg-gradient-to-br;
+   @apply p-2 rounded-md w-fit;
 }
