@@ -3,6 +3,10 @@
 	max-width: 500px;
 }
 
+.Form .link {
+	@apply text-blue-400 hover:text-blue-600;
+}
+
 .Form * {
 	@apply w-full;
 }

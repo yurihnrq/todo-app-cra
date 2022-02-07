@@ -5,6 +5,7 @@ interface IInput {
 	id?: string,
 	type: string,
 	value: string | number | undefined,
+	required?: boolean,
 	min?: number,
 	max?: number
 	maxLength?: number,
@@ -14,10 +15,14 @@ interface IInput {
 	onChange?: ChangeEventHandler<HTMLInputElement>,
 }
 
-const Input: React.FC<IInput> = ({ id, type, value, min, max, maxLength, minLenhth, className, placeholder, onChange }) => {
+const Input: React.FC<IInput> = ({
+	id, type, value, required,
+	min, max, maxLength, minLenhth,
+	className, placeholder, onChange
+}) => {
 	return (
 		<input
-			type={type} id={id} value={value} min={min} max={max}
+			type={type} id={id} value={value} required={required} min={min} max={max}
 			maxLength={maxLength} minLength={minLenhth}
 			onChange={onChange} placeholder={placeholder}
 			className={`
