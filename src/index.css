@@ -9,7 +9,7 @@ html {
 }
 
 body {
-	@apply bg-slate-100 text-gray-800 dark:bg-slate-600 dark:text-slate-300;
+	@apply bg-slate-100 text-gray-800 dark:bg-slate-600 dark:text-slate-100;
 	font-family: 'Roboto', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
