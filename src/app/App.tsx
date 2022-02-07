@@ -12,6 +12,7 @@ function App() {
 			<Routes>
 				<Route path='/sobre' element={<About />} />
 				<Route path='/login' element={<Login />} />
+				{/* <Route path='/cadastro' element={<Signup />} /> */}
 				<Route element={<PrivateRoutes />}>
 					<Route path='/' element={<ToDo />} />
 				</Route>
