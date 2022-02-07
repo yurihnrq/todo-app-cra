@@ -1,0 +1,8 @@
+.Form {
+	@apply flex flex-col mx-auto;
+	max-width: 500px;
+}
+
+.Form * {
+	@apply w-full;
+}

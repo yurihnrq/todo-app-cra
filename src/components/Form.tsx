@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from './Button';
 
 import { PlusIcon } from './Icons';
-import styles from './Form.module.css';
+import styles from './styles/TodoForm.module.css';
 
 interface IForm {
 	action: (todo: string) => void
@@ -27,7 +27,7 @@ const Form: React.FC<IForm> = ({ action }) => {
 		<form className={styles.Form} onSubmit={e => e.preventDefault()}>
 			<div>
 				<input
-					className={`${styles.todoInput} dark:bg-slate-500 dark:text-white`} 
+					className='dark:bg-slate-500 dark:text-white'
 					id='todo' type='text' value={text} onChange={e => setText(e.target.value)}
 					placeholder='Insira seu a fazer aqui...' maxLength={45}
 				/>

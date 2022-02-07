@@ -10,7 +10,7 @@
 	@apply text-sm text-red-600;
 }
 
-.Form .todoInput {
+.Form input {
 	@apply block w-full h-10 rounded-md px-2;
 	@apply border-2 border-indigo-500;
 	@apply focus:outline-indigo-800 outline-4;
