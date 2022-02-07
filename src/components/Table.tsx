@@ -3,7 +3,7 @@ import ToDo from '../core/ToDo';
 import { TrashIcon } from './Icons';
 import Button from './Button';
 
-import styles from './Table.module.css';
+import styles from './styles/Table.module.css';
 
 interface ITable {
 	todos: ToDo[],
