@@ -7,10 +7,10 @@ import {
 	CloseIcon,
 	MoonIcon,
 	SunIcon
-} from './Icons';
-import styles from './styles/Header.module.css';
+} from '../Icons';
+import styles from '../styles/Header.module.css';
 
-import useTheme from '../hooks/useTheme';
+import useTheme from '../../hooks/useTheme';
 
 const Header: React.FC = () => {
 
