@@ -9,7 +9,7 @@ interface IInput {
 	min?: number,
 	max?: number
 	maxLength?: number,
-	minLenhth?: number
+	minLength?: number
 	className?: string,
 	placeholder?: string | undefined,
 	onChange?: ChangeEventHandler<HTMLInputElement>,
@@ -17,13 +17,13 @@ interface IInput {
 
 const Input: React.FC<IInput> = ({
 	id, type, value, required,
-	min, max, maxLength, minLenhth,
+	min, max, maxLength, minLength,
 	className, placeholder, onChange
 }) => {
 	return (
 		<input
 			type={type} id={id} value={value} required={required} min={min} max={max}
-			maxLength={maxLength} minLength={minLenhth}
+			maxLength={maxLength} minLength={minLength}
 			onChange={onChange} placeholder={placeholder}
 			className={`
 				${styles.Input} ${className} 

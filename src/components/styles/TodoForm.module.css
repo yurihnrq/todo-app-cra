@@ -1,13 +1,14 @@
 .Form {
-	@apply flex flex-row items-center justify-center sm:justify-between flex-wrap;
+	@apply flex flex-col justify-center sm:justify-between flex-wrap;
 }
 
 .Form div {
-	@apply w-full sm:w-8/12;
+	@apply flex flex-col sm:flex-row items-center mb-2;
 }
 
-.Form div span {
-	@apply text-sm text-red-600;
+.Form .warning {
+	@apply p-2 rounded-md bg-red-100 border-red-400 border-2;
+	@apply text-red-600 font-medium mb-3 text-center;
 }
 
 .Form .addButton {

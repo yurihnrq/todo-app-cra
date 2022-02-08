@@ -9,11 +9,11 @@ import {
 	SunIcon
 } from '../Icons';
 import styles from '../styles/Header.module.css';
-
 import useTheme from '../../hooks/useTheme';
+import { useAuth } from '../../context/AuthContext';
 
 const Header: React.FC = () => {
-
+	const { user, logout } = useAuth();
 	const [theme, setTheme] = useTheme();
 	const [sideNav, setSideNav] = useState<boolean>(false);
 
@@ -56,9 +56,15 @@ const Header: React.FC = () => {
 						<Link to='/sobre'>
 							Sobre
 						</Link>
-						<Link to='/login' onClick={() => setSideNav(!sideNav)}>
-							Login
-						</Link>
+						{user ? (
+							<a onClick={() => { if (logout) logout(); }} >
+								Sair
+							</a>
+						) : (
+							<Link to='/login' onClick={() => setSideNav(!sideNav)}>
+								Login
+							</Link>
+						)}
 					</nav>
 				) : (
 					<div className={styles.sideNav}>
@@ -77,14 +83,20 @@ const Header: React.FC = () => {
 							<Link to='/sobre' onClick={() => setSideNav(!sideNav)}>
 								Sobre
 							</Link>
-							<Link to='/login' onClick={() => setSideNav(!sideNav)}>
-								Login
-							</Link>
+							{user ? (
+								<a onClick={() => { if (logout) logout(); }} >
+									Sair
+								</a>
+							) : (
+								<Link to='/login' onClick={() => setSideNav(!sideNav)}>
+									Login
+								</Link>
+							)}
 						</nav>
 					</div>
 				)
 			}
-		</header>
+		</header >
 	);
 };
 
