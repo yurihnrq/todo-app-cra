@@ -5,14 +5,15 @@ interface IButton {
 	className?: string,
 	label: string,
 	color: 'red' | 'blue' | 'green',
-	onClick?: React.MouseEventHandler<HTMLButtonElement>
+	onClick?: React.MouseEventHandler<HTMLButtonElement>,
+	disabled?: boolean
 }
 
-const Button: React.FC<IButton> = ({ className, children, label, color, onClick }) => {
+const Button: React.FC<IButton> = ({ className, children, label, color, onClick, disabled }) => {
 	return (
 		<button
-			className={`${styles.Button} ${className} ${colors[color]}`}
-			aria-label={label} onClick={onClick}
+			className={`${styles.Button} ${className} ${colors[color]} disabled:bg-slate-400`}
+			aria-label={label} onClick={onClick} disabled={disabled}
 		>
 			{children}
 		</button>
@@ -28,7 +29,8 @@ const colors = {
 
 Button.defaultProps = {
 	className: '',
-	label: 'Button'
+	label: 'Button',
+	disabled: false
 };
 
 export default Button;

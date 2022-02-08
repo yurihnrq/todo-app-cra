@@ -5,18 +5,25 @@ import ToDo from '../pages/ToDo';
 import About from '../pages/About';
 import PrivateRoutes from '../routes/PrivateRoutes';
 import Login from '../pages/Login';
+import Signup from '../pages/Signup';
+import AuthProvider from '../context/AuthContext';
+import PublicRoutes from '../routes/PublicRoutes';
 
 function App() {
 	return (
 		<Router>
-			<Routes>
-				<Route path='/sobre' element={<About />} />
-				<Route path='/login' element={<Login />} />
-				{/* <Route path='/cadastro' element={<Signup />} /> */}
-				<Route element={<PrivateRoutes />}>
-					<Route path='/' element={<ToDo />} />
-				</Route>
-			</Routes>
+			<AuthProvider>
+				<Routes>
+					<Route path='/sobre' element={<About />} />
+					<Route element={<PublicRoutes />}>
+						<Route path='/login' element={<Login />} />
+						<Route path='/cadastro' element={<Signup />} />
+					</Route>
+					<Route element={<PrivateRoutes />}>
+						<Route path='/' element={<ToDo />} />
+					</Route>
+				</Routes>
+			</AuthProvider>
 		</Router>
 	);
 }

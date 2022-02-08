@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Layout from '../components/layout/Layout';
 import Table from '../components/Table';
 import Form from '../components/TodoForm';
-
 import styles from './styles/ToDo.module.css';
 import ToDo from '../core/ToDo';
+import { useAuth } from '../context/AuthContext';
 
 const Home: React.FC = () => {
+	const { user } = useAuth();
 	const [todos, setTodos] = useState<Array<ToDo>>(new Array<ToDo>());
 	// Apenas para implementação inicial.
 	// Este contador é utilizado para gerar IDs para os items da lista.
@@ -80,7 +81,7 @@ const Home: React.FC = () => {
 	return (
 		<Layout>
 			<section className={styles.ToDo}>
-				<h2 className='dark:text-slate-200'>ToDos</h2>
+				<h2 className='dark:text-slate-200'>Olá {user?.email}</h2>
 				<Form action={addTodo} />
 				<Table deleteAction={deleteToDo} checkAction={checkTodo} todos={todos} />
 			</section>

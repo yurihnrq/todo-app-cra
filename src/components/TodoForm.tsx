@@ -32,16 +32,16 @@ const Form: React.FC<IForm> = ({ action }) => {
 					id='todo' type='text' value={text} onChange={e => setText(e.target.value)}
 					placeholder='Insira seu a fazer aqui...' maxLength={45}
 				/>
-				{warning ? (
-					<span className='dark:text-red-400'>
-						Você deve inserir ao menos dois caracteres.
-					</span>
-				) : null}
+				<Button className={`${styles.addButton} ml-3`} color='green' label='Add Todo'>
+					{PlusIcon}
+					Adicionar
+				</Button>
 			</div>
-			<Button className={`${styles.addButton} ml-3`} color='green' label='Add Todo'>
-				{PlusIcon}
-				Adicionar
-			</Button>
+			{warning ? (
+				<span className={styles.warning}>
+					Você deve inserir ao menos dois caracteres.
+				</span>
+			) : null}
 		</form >
 	);
 };

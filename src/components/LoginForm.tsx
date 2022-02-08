@@ -2,18 +2,20 @@ import React, { FormEventHandler, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Input from './layout/Input';
 import Button from './layout/Button';
-import styles from './styles/LoginForm.module.css';
+import styles from './styles/Form.module.css';
 import { useAuth } from '../context/AuthContext';
 
 const LoginForm: React.FC = () => {
 
 	const [email, setEmail] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
+	const { login } = useAuth();
 
-	const formHandler: FormEventHandler<HTMLFormElement> = (event) => {
+	const formHandler: FormEventHandler<HTMLFormElement> = async (event) => {
 		event.preventDefault();
 
-		useAuth()?.login(email, password);
+		if (login)
+			await login(email, password);
 	};
 
 	return (
@@ -24,7 +26,7 @@ const LoginForm: React.FC = () => {
 			<Input
 				id='email' type='email' value={email} required
 				onChange={(e) => setEmail(e.target.value)}
-				placeholder='email@dominio.com' className='mb-4'
+				placeholder='email@dominio.com'
 			/>
 			<label htmlFor='password'>
 				Senha
@@ -32,7 +34,7 @@ const LoginForm: React.FC = () => {
 			<Input
 				id='password' type='password' value={password} required
 				onChange={(e) => setPassword(e.target.value)}
-				placeholder='Insira sua senha...' className='mb-4'
+				placeholder='Insira sua senha...' minLength={6}
 			/>
 			<Button color='blue' label='Realizar login'>
 				Entrar
@@ -40,7 +42,7 @@ const LoginForm: React.FC = () => {
 			<hr className='my-4 bg-slate-300' />
 			<span className='text-sm text-center'>
 				Não possui uma conta? &nbsp;
-				<Link to='/' className={styles.link}>
+				<Link to='/cadastro' className={styles.link}>
 					Cadastre-se
 				</Link>
 			</span>
