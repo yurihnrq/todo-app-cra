@@ -3,12 +3,12 @@
 }
 .sideNav-enter-active {
 	opacity: 1;
-	transition: opacity 200ms;
+	transition: opacity 150ms;
 }
 .sideNav-exit {
 	opacity: 1;
 }
 .sideNav-exit-active {
 	opacity: 0;
-	transition: opacity 200ms;
+	transition: opacity 150ms;
 }
