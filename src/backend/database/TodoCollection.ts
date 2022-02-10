@@ -2,7 +2,16 @@ import Todo from '../../core/Todo';
 import TodoRepo from '../../core/TodoRepo';
 import { database } from '../config';
 import { User } from 'firebase/auth';
-import { collection, doc, addDoc, getDocs, deleteDoc, updateDoc } from 'firebase/firestore';
+import {
+	collection,
+	doc,
+	addDoc,
+	getDocs,
+	deleteDoc,
+	updateDoc,
+	query,
+	orderBy
+} from 'firebase/firestore';
 
 class TodoCollection implements TodoRepo {
 	async save(todo: Todo, user: User | null): Promise<void> {
@@ -42,8 +51,9 @@ class TodoCollection implements TodoRepo {
 		const todos: Todo[] = [];
 		if (!user)
 			throw new Error('Usuário não instanciado.');
-
-		const todosSnapshop = await getDocs(collection(database, `todos\\${user.uid}`));
+			
+		const dataQuery = query(collection(database, `todos\\${user.uid}`), orderBy('createdAt', 'desc'));
+		const todosSnapshop = await getDocs(dataQuery);
 
 		todosSnapshop.forEach(doc => {
 			const todo = doc.data();
