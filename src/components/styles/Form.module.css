@@ -1,0 +1,21 @@
+.Form {
+	@apply flex flex-col mx-auto;
+	max-width: 500px;
+}
+
+.Form .link {
+	@apply text-blue-400 hover:text-blue-600;
+}
+
+.Form .warning {
+	@apply p-2 rounded-md bg-red-100 border-red-400 border-2;
+	@apply text-red-600 font-medium mb-3;
+}
+
+.Form input {
+	@apply mb-4;
+}
+
+.Form * {
+	@apply w-full;
+}

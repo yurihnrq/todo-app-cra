@@ -39,5 +39,9 @@
 }
 
 .Header .sideNav nav {
-	@apply flex flex-col gap-5;
+	@apply flex flex-col gap-2;
+}
+
+.Header .sideNav a {
+	@apply text-xl p-1;
 }

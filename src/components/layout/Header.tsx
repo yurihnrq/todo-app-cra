@@ -7,13 +7,13 @@ import {
 	CloseIcon,
 	MoonIcon,
 	SunIcon
-} from './Icons';
-import styles from './Header.module.css';
-
-import useTheme from '../hooks/useTheme';
+} from '../Icons';
+import styles from './styles/Header.module.css';
+import useTheme from '../../hooks/useTheme';
+import { useAuth } from '../../context/AuthContext';
 
 const Header: React.FC = () => {
-
+	const { user, logout } = useAuth();
 	const [theme, setTheme] = useTheme();
 	const [sideNav, setSideNav] = useState<boolean>(false);
 
@@ -56,6 +56,15 @@ const Header: React.FC = () => {
 						<Link to='/sobre'>
 							Sobre
 						</Link>
+						{user ? (
+							<Link to='/login' onClick={() => { if (logout) logout(); }} >
+								Sair
+							</Link>
+						) : (
+							<Link to='/login'>
+								Login
+							</Link>
+						)}
 					</nav>
 				) : (
 					<div className={styles.sideNav}>
@@ -74,11 +83,20 @@ const Header: React.FC = () => {
 							<Link to='/sobre' onClick={() => setSideNav(!sideNav)}>
 								Sobre
 							</Link>
+							{user ? (
+								<Link to='/login' onClick={() => { if (logout) logout(); }} >
+									Sair
+								</Link>
+							) : (
+								<Link to='/login' onClick={() => setSideNav(!sideNav)}>
+									Login
+								</Link>
+							)}
 						</nav>
 					</div>
 				)
 			}
-		</header>
+		</header >
 	);
 };
 
