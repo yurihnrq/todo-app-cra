@@ -14,15 +14,17 @@ import {
 } from 'firebase/firestore';
 
 class TodoCollection implements TodoRepo {
-	async save(todo: Todo, user: User | null): Promise<void> {
+	async save(todo: Todo, user: User | null): Promise<Todo> {
 		if (!user)
 			throw new Error('Usuário não instanciado.');
 
-		await addDoc(collection(database, `todos\\${user.uid}`), {
+		const dbReturn = await addDoc(collection(database, `todos\\${user.uid}`), {
 			description: todo.description,
 			done: todo.done,
 			createdAt: todo.createdAt.toJSON()
 		});
+
+		return new Todo(todo.description, todo.done, todo.createdAt, dbReturn.id);
 	}
 
 	async delete(todo: Todo, user: User | null): Promise<void> {

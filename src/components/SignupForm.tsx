@@ -1,4 +1,5 @@
 import React, { FormEventHandler, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Input from './layout/Input';
 import Button from './layout/Button';
 import styles from './styles/Form.module.css';
@@ -79,6 +80,13 @@ const SignupForm: React.FC = () => {
 			<Button color='blue' label='Realizar cadastro' disabled={loading}>
 				Cadastrar-se
 			</Button>
+			<hr className='my-4 bg-slate-300' />
+			<span className='text-sm text-center'>
+				Já é cadastrado? &nbsp;
+				<Link to='/login' className={styles.link}>
+					Realize login
+				</Link>
+			</span>
 		</form>
 	);
 };
