@@ -8,7 +8,7 @@ import {
 	MoonIcon,
 	SunIcon
 } from '../Icons';
-import styles from '../styles/Header.module.css';
+import styles from './styles/Header.module.css';
 import useTheme from '../../hooks/useTheme';
 import { useAuth } from '../../context/AuthContext';
 
@@ -57,11 +57,11 @@ const Header: React.FC = () => {
 							Sobre
 						</Link>
 						{user ? (
-							<a onClick={() => { if (logout) logout(); }} >
+							<Link to='/login' onClick={() => { if (logout) logout(); }} >
 								Sair
-							</a>
+							</Link>
 						) : (
-							<Link to='/login' onClick={() => setSideNav(!sideNav)}>
+							<Link to='/login'>
 								Login
 							</Link>
 						)}
@@ -84,9 +84,9 @@ const Header: React.FC = () => {
 								Sobre
 							</Link>
 							{user ? (
-								<a onClick={() => { if (logout) logout(); }} >
+								<Link to='/login' onClick={() => { if (logout) logout(); }} >
 									Sair
-								</a>
+								</Link>
 							) : (
 								<Link to='/login' onClick={() => setSideNav(!sideNav)}>
 									Login

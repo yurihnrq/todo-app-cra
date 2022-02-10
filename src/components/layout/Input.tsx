@@ -1,5 +1,5 @@
 import React, { ChangeEventHandler } from 'react';
-import styles from '../styles/Input.module.css';
+import styles from './styles/Input.module.css';
 
 interface IInput {
 	id?: string,
