@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import { CSSTransition } from 'react-transition-group';
+import './styles/sideNav.css';
 import {
 	CheckIcon,
 	MenuIcon,
@@ -41,19 +42,44 @@ const Header: React.FC = () => {
 					{MenuIcon}
 				</button>
 			</div>
-			{
-				!sideNav ? (
-					<nav className={styles.nav}>
+			<nav className={styles.nav}>
+				<button
+					className='p-0 sm:mr-4' aria-label='Change theme'
+					onClick={() => theme === 'light' ? setTheme('dark') : setTheme('light')}
+				>
+					{theme === 'light' ? (MoonIcon) : (SunIcon)}
+				</button>
+				<Link to='/'>
+					Inicio
+				</Link>
+				<Link to='/sobre'>
+					Sobre
+				</Link>
+				{user ? (
+					<Link to='/login' onClick={() => { if (logout) logout(); }} >
+						Sair
+					</Link>
+				) : (
+					<Link to='/login'>
+						Login
+					</Link>
+				)}
+			</nav>
+			<CSSTransition in={sideNav} timeout={200} classNames='sideNav' unmountOnExit>
+				<div className={styles.sideNav}>
+					<div>
 						<button
-							className='p-0 sm:mr-4' aria-label='Change theme'
-							onClick={() => theme === 'light' ? setTheme('dark') : setTheme('light')}
+							aria-label='Close mobile navbar'
+							onClick={() => setSideNav(!sideNav)}
 						>
-							{theme === 'light' ? (MoonIcon) : (SunIcon)}
+							{CloseIcon}
 						</button>
-						<Link to='/'>
+					</div>
+					<nav>
+						<Link to='/' onClick={() => setSideNav(!sideNav)}>
 							Inicio
 						</Link>
-						<Link to='/sobre'>
+						<Link to='/sobre' onClick={() => setSideNav(!sideNav)}>
 							Sobre
 						</Link>
 						{user ? (
@@ -61,41 +87,13 @@ const Header: React.FC = () => {
 								Sair
 							</Link>
 						) : (
-							<Link to='/login'>
+							<Link to='/login' onClick={() => setSideNav(!sideNav)}>
 								Login
 							</Link>
 						)}
 					</nav>
-				) : (
-					<div className={styles.sideNav}>
-						<div>
-							<button
-								aria-label='Close mobile navbar'
-								onClick={() => setSideNav(!sideNav)}
-							>
-								{CloseIcon}
-							</button>
-						</div>
-						<nav>
-							<Link to='/' onClick={() => setSideNav(!sideNav)}>
-								Inicio
-							</Link>
-							<Link to='/sobre' onClick={() => setSideNav(!sideNav)}>
-								Sobre
-							</Link>
-							{user ? (
-								<Link to='/login' onClick={() => { if (logout) logout(); }} >
-									Sair
-								</Link>
-							) : (
-								<Link to='/login' onClick={() => setSideNav(!sideNav)}>
-									Login
-								</Link>
-							)}
-						</nav>
-					</div>
-				)
-			}
+				</div>
+			</CSSTransition>
 		</header >
 	);
 };

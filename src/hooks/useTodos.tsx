@@ -17,6 +17,9 @@ const useTodos = (user: User | null): useTodosReturnTypes => {
 
 	useEffect(() => {
 		getTodos();
+		return () => {
+			setTodos([]);
+		};
 	}, []);
 
 	const getTodos = () => {
@@ -31,7 +34,7 @@ const useTodos = (user: User | null): useTodosReturnTypes => {
 					console.error(promiseReturn);
 					return;
 				}
-	
+
 				getTodos();
 			});
 		} catch (e) {
