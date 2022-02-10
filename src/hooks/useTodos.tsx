@@ -24,15 +24,19 @@ const useTodos = (user: User | null): useTodosReturnTypes => {
 	};
 
 	const addTodo = (todo: string) => {
-		const todoObj = new Todo(user?.uid || '', todo, false, new Date());
-		dataCollection.save(todoObj, user).then(promiseReturn => {
-			if (promiseReturn !== true) {
-				console.error(promiseReturn);
-				return;
-			}
-
-			getTodos();
-		});
+		try {
+			const todoObj = new Todo(user?.uid || '', todo, false, new Date());
+			dataCollection.save(todoObj, user).then(promiseReturn => {
+				if (promiseReturn !== true) {
+					console.error(promiseReturn);
+					return;
+				}
+	
+				getTodos();
+			});
+		} catch (e) {
+			console.log(e);
+		}
 	};
 
 	const deleteTodo = (todo: Todo) => {
