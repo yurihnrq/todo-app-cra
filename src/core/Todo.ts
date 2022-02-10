@@ -1,20 +1,14 @@
 class Todo {
-	#userID: string;
 	#id: string | null;
 	#description: string;
 	#done: boolean;
 	#createdAt: Date;
 
-	constructor(userID: string, description: string, done: boolean, createdAt: Date, id: string | null = null) {
-		this.#userID = userID;
+	constructor(description: string, done: boolean, createdAt: Date, id: string | null = null) {
 		this.#id = id;
 		this.#description = description;
 		this.#done = done;
 		this.#createdAt = createdAt;
-	}
-
-	get userID() {
-		return this.#userID;
 	}
 
 	get id() {

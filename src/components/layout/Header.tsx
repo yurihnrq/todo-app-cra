@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
-import './styles/sideNav.css';
+import './styles/sideNav.transition.css';
 import {
 	CheckIcon,
 	MenuIcon,
@@ -65,7 +65,7 @@ const Header: React.FC = () => {
 					</Link>
 				)}
 			</nav>
-			<CSSTransition in={sideNav} timeout={200} classNames='sideNav' unmountOnExit>
+			<CSSTransition in={sideNav} timeout={150} classNames='sideNav' unmountOnExit>
 				<div className={styles.sideNav}>
 					<div>
 						<button

@@ -54,6 +54,10 @@ const AuthProvider: React.FC = ({ children }) => {
 		onAuthStateChanged(auth, user => {
 			setUser(user);
 		});
+
+		return () => {
+			setUser(null);
+		};
 	}, []);
 
 	return (

@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, enableMultiTabIndexedDbPersistence } from 'firebase/firestore';
 
 const app = initializeApp({
 	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -13,3 +13,5 @@ const app = initializeApp({
 export default app;
 
 export const database = getFirestore(app);
+
+enableMultiTabIndexedDbPersistence(database);

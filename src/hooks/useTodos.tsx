@@ -6,6 +6,7 @@ import { User } from 'firebase/auth';
 
 interface useTodosReturnTypes {
 	todos: Todo[];
+	error: string | null,
 	addTodo: (todo: string) => void;
 	deleteTodo: (todo: Todo) => void;
 	updateTodo: (todo: Todo) => void;
@@ -14,6 +15,7 @@ interface useTodosReturnTypes {
 const useTodos = (user: User | null): useTodosReturnTypes => {
 	const dataCollection = new TodoCollection();
 	const [todos, setTodos] = useState<Todo[]>([]);
+	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
 		getTodos();
@@ -23,44 +25,53 @@ const useTodos = (user: User | null): useTodosReturnTypes => {
 	}, []);
 
 	const getTodos = () => {
-		dataCollection.getAll(user?.uid || '').then(todos => setTodos(todos));
+		try {
+			dataCollection.getAll(user).then(todos => {
+				setTodos(todos);
+			});
+			setError(null);
+		} catch (error) {
+			setError('Erro: ' + error);
+		}
 	};
 
 	const addTodo = (todo: string) => {
 		try {
-			const todoObj = new Todo(user?.uid || '', todo, false, new Date());
-			dataCollection.save(todoObj, user).then(promiseReturn => {
-				if (promiseReturn !== true) {
-					console.error(promiseReturn);
-					return;
-				}
-
+			const todoObj = new Todo(todo, false, new Date());
+			dataCollection.save(todoObj, user).then(() => {
 				getTodos();
 			});
-		} catch (e) {
-			console.log(e);
+			setError(null);
+		} catch (error) {
+			setError('Erro: ' + error);
 		}
 	};
 
 	const deleteTodo = (todo: Todo) => {
-		dataCollection.delete(todo.id || '').then(promiseReturn => {
-			if (promiseReturn !== true) {
-				console.error(promiseReturn);
-				return;
-			}
-		});
-
-		getTodos();
+		try {
+			dataCollection.delete(todo, user).then(() => {
+				getTodos();
+			});
+			setError(null);
+		} catch (error) {
+			setError('Erro: ' + error);
+		}
 	};
 
 	const updateTodo = (todo: Todo) => {
-		dataCollection.update(todo, user?.uid || '');
-
-		getTodos();
+		try {
+			dataCollection.update(todo, user).then(() => {
+				getTodos();
+			});
+			setError(null);
+		} catch (error) {
+			setError('Erro: ' + error);
+		}
 	};
 
 	return {
 		todos,
+		error,
 		addTodo,
 		deleteTodo,
 		updateTodo
