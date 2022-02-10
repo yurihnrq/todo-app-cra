@@ -4,7 +4,8 @@ import { useAuth } from '../context/AuthContext';
 
 const PublicRoutes: React.FC = () => {
 	const { user } = useAuth();
-	return user === null ? <Outlet /> : <Navigate to='/' />;
+	if (user === null) return <Outlet />;
+	else return <Navigate to='/' />;
 };
 
 export default PublicRoutes;

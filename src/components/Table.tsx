@@ -1,24 +1,30 @@
 import React from 'react';
-import ToDo from '../core/ToDo';
+import ToDo from '../core/Todo';
 import { TrashIcon } from './Icons';
 import Button from './layout/Button';
 import styles from './styles/Table.module.css';
 
 interface ITable {
 	todos: ToDo[],
-	deleteAction: (todo: ToDo) => boolean
-	checkAction: (todo: ToDo) => void
+	deleteAction: (todo: ToDo) => void
+	updateAction: (todo: ToDo) => void
 }
 
-const Table: React.FC<ITable> = ({ todos, deleteAction, checkAction }) => {
+const Table: React.FC<ITable> = ({ todos, deleteAction, updateAction }) => {
 
 	const renderTodos = () => {
 
 		return todos?.map((todo: ToDo, i: number): React.ReactNode => {
 			return (
-				<tr className={`${styles.row} ${i%2 !== 0 ? 'bg-slate-300 dark:bg-slate-700' : ''}`} key={todo.id}>
+				<tr className={`${styles.row} ${i % 2 !== 0 ? 'bg-slate-300 dark:bg-slate-700' : ''}`} key={todo.id}>
 					<td>
-						<input type='checkbox' id={i.toString()} checked={todo.done} onChange={() => checkAction(todo)} />
+						<input
+							type='checkbox' id={i.toString()} checked={todo.done}
+							onChange={() => {
+								todo.done = !todo.done;
+								updateAction(todo);
+							}}
+						/>
 					</td>
 					<td>
 						<label htmlFor={i.toString()}>

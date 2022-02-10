@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import ToDo from '../pages/ToDo';
+import Todo from '../pages/Todo';
 import About from '../pages/About';
 import PrivateRoutes from '../routes/PrivateRoutes';
 import Login from '../pages/Login';
@@ -20,7 +20,7 @@ function App() {
 						<Route path='/cadastro' element={<Signup />} />
 					</Route>
 					<Route element={<PrivateRoutes />}>
-						<Route path='/' element={<ToDo />} />
+						<Route path='/' element={<Todo />} />
 					</Route>
 				</Routes>
 			</AuthProvider>

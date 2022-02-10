@@ -5,10 +5,10 @@ import { PlusIcon } from './Icons';
 import styles from './styles/TodoForm.module.css';
 
 interface IForm {
-	action: (todo: string) => void
+	addAction: (todo: string) => void
 }
 
-const Form: React.FC<IForm> = ({ action }) => {
+const Form: React.FC<IForm> = ({ addAction }) => {
 
 	const [text, setText] = useState<string>('');
 	const [warning, setWarning] = useState<boolean>(false);
@@ -20,7 +20,7 @@ const Form: React.FC<IForm> = ({ action }) => {
 			setWarning(true);
 		else {
 			setWarning(false);
-			action(text);
+			addAction(text);
 			setText('');
 		}
 	};
