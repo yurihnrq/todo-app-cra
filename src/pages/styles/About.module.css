@@ -1,5 +1,10 @@
+.About {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
 .About * {
-	@apply sm:text-justify;
+	@apply text-justify;
 }
 
 .About h1 {

@@ -12,13 +12,15 @@ import {
 
 interface IAuthContext {
 	user: User | null,
+	loading: boolean,
 	login?: (email: string, password: string) => Promise<UserCredential>,
 	signup?: (email: string, password: string) => Promise<UserCredential>
 	logout?: () => Promise<void>
 }
 
 const initialContext: IAuthContext = {
-	user: null
+	user: null,
+	loading: true
 };
 
 const AuthContext = createContext<IAuthContext>(initialContext);
@@ -30,6 +32,7 @@ const auth = getAuth(firebase);
 
 const AuthProvider: React.FC = ({ children }) => {
 	const [user, setUser] = useState<User | null>(null);
+	const [loading, setLoading] = useState<boolean>(true);
 
 	const login = (email: string, password: string) => {
 		return signInWithEmailAndPassword(auth, email, password);
@@ -45,14 +48,16 @@ const AuthProvider: React.FC = ({ children }) => {
 
 	const value: IAuthContext = {
 		user,
+		loading,
 		login,
 		signup,
-		logout
+		logout,
 	};
 
 	useEffect(() => {
 		onAuthStateChanged(auth, user => {
 			setUser(user);
+			setLoading(false);
 		});
 
 		return () => {

@@ -25,6 +25,10 @@
 	@apply active:from-red-800 active:to-orange-700;
 }
 
+.Button.red:focus {
+	box-shadow: 0px 0px 0px 3px rgba(220, 38, 38, 0.4);
+}
+
 .Button.green {
 	@apply from-green-700 to-emerald-600 ;
 	@apply hover:from-green-600 hover:to-emerald-500 ;
