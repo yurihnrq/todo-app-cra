@@ -13,8 +13,7 @@ interface ITable {
 const Table: React.FC<ITable> = ({ todos, deleteAction, updateAction }) => {
 
 	const renderTodos = () => {
-
-		return (todos?.map((todo: Todo, i: number) => (
+		return (todos?.sort((a, b) => a.done >= b.done ? 1 : -1).map((todo: Todo, i: number) => (
 			<tr
 				className={`${styles.row} ${i % 2 !== 0 ? 'bg-slate-300 dark:bg-slate-700' : ''}`}
 				key={todo.id}
@@ -52,7 +51,11 @@ const Table: React.FC<ITable> = ({ todos, deleteAction, updateAction }) => {
 	return (
 		<table className={styles.Table}>
 			<tbody>
-				{renderTodos()}
+				{
+					todos.length > 0 ?
+						renderTodos() :
+						<h3>Cadastre uma tarefa no campo acima. ⬆️</h3>
+				}
 			</tbody>
 		</table>
 	);

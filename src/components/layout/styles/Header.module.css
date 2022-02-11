@@ -1,6 +1,6 @@
 .Header {
 	@apply flex justify-between p-4;
-	@apply bg-gradient-to-br from-blue-600 to-violet-600;
+	@apply bg-gradient-to-b from-blue-600 to-violet-600;
 	@apply text-white;
 }
 
