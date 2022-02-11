@@ -19,7 +19,7 @@
 			"purpose": "maskable"
 		}
 	],
-	"start_url": "https://todo-yuri-hnrq.web.app/",
+	"start_url": "/",
 	"display": "standalone",
 	"background_color": "#2563eb",
 	"theme_color": "#2563eb"
