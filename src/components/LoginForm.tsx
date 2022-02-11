@@ -15,7 +15,11 @@ const LoginForm: React.FC = () => {
 		event.preventDefault();
 
 		if (login)
-			await login(email, password);
+			try {
+				await login(email, password);
+			} catch (error) {
+				console.error('Usuário não encontrado');
+			}
 	};
 
 	return (

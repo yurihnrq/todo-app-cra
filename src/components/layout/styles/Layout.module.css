@@ -5,3 +5,32 @@
 .Layout .content {
 	@apply px-5 pt-4 pb-20 sm:px-8 sm:pt-8 sm:pb-24 h-full;
 }
+
+.Layout .loading {
+	@apply absolute top-1/2 w-full text-center;
+}
+
+.Layout .loading .spinner {
+	@apply h-14 w-14 mx-auto rounded-full;
+	@apply border-blue-200 border-4 border-b-blue-500;
+	@apply animate-spin;
+}
+
+/* CSSTransition classes */
+.contentEnter {
+	opacity: 0;
+}
+
+.contentEnterActive {
+	opacity: 1;
+	transition: opacity 300ms;
+}
+
+.contentExit {
+	opacity: 1;
+}
+
+.contentExitActive {
+	opacity: 0;
+	transition: opacity 300ms;
+}

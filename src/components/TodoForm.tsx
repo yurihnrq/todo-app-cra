@@ -32,7 +32,7 @@ const Form: React.FC<IForm> = ({ addAction }) => {
 					id='todo' type='text' value={text} onChange={e => setText(e.target.value)}
 					placeholder='Insira seu a fazer aqui...' maxLength={45}
 				/>
-				<Button className={`${styles.addButton} ml-3`} color='green' label='Add Todo'>
+				<Button className={`${styles.addButton} ml-3 h-10`} color='green' label='Add Todo'>
 					{PlusIcon}
 					Adicionar
 				</Button>

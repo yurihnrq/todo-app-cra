@@ -28,6 +28,7 @@ const Input: React.FC<IInput> = ({
 			className={`
 				${styles.Input} ${className} 
 				dark:bg-slate-500 dark:text-white
+				dark:placeholder:text-slate-300
 			`}
 		/>
 	);

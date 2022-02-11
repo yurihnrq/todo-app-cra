@@ -16,9 +16,9 @@ jobs:
       REACT_APP_FIREBASE_STORAGE_BUCKET: '${{ secrets.REACT_APP_FIREBASE_STORAGE_BUCKET }}'
     steps:
       - uses: actions/checkout@v2
-      - run: npm run build
+      - run: npm i && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TODO_APP_B50AB }}'
-          projectId: todo-app-b50ab
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TODO_YURI_HNRQ }}'
+          projectId: todo-yuri-hnrq

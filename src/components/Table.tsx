@@ -1,47 +1,52 @@
 import React from 'react';
-import ToDo from '../core/Todo';
+import Todo from '../core/Todo';
 import { TrashIcon } from './Icons';
 import Button from './layout/Button';
 import styles from './styles/Table.module.css';
 
 interface ITable {
-	todos: ToDo[],
-	deleteAction: (todo: ToDo) => void
-	updateAction: (todo: ToDo) => void
+	todos: Todo[],
+	deleteAction: (todo: Todo) => void
+	updateAction: (todo: Todo) => void
 }
 
 const Table: React.FC<ITable> = ({ todos, deleteAction, updateAction }) => {
 
 	const renderTodos = () => {
 
-		return todos?.map((todo: ToDo, i: number): React.ReactNode => {
-			return (
-				<tr className={`${styles.row} ${i % 2 !== 0 ? 'bg-slate-300 dark:bg-slate-700' : ''}`} key={todo.id}>
-					<td>
-						<input
-							type='checkbox' id={i.toString()} checked={todo.done}
-							onChange={() => {
-								todo.done = !todo.done;
-								updateAction(todo);
-							}}
-						/>
-					</td>
-					<td>
-						<label htmlFor={i.toString()}>
-							{todo.description}
-						</label>
-					</td>
-					<td className={styles.date}>
-						{todo.createdAt.toLocaleDateString('pt-BR')}
-					</td>
-					<td>
-						<Button onClick={() => deleteAction(todo)} color='red' label='Delete ToDo'>
-							{TrashIcon}
-						</Button>
-					</td>
-				</tr>
-			);
-		});
+		return (todos?.map((todo: Todo, i: number) => (
+			<tr
+				className={`${styles.row} ${i % 2 !== 0 ? 'bg-slate-300 dark:bg-slate-700' : ''}`}
+				key={todo.id}
+			>
+				<td>
+					<input
+						type='checkbox' id={i.toString()} checked={todo.done}
+						onChange={() => {
+							todo.done = !todo.done;
+							updateAction(todo);
+						}}
+					/>
+				</td>
+				<td>
+					<label htmlFor={i.toString()} className={`${todo.done ? styles.done : ''}`}>
+						{todo.description}
+					</label>
+				</td>
+				<td className={styles.date}>
+					{todo.createdAt.toLocaleDateString('pt-BR')}
+				</td>
+				<td>
+					<Button
+						color='red' label='Delete ToDo'
+						className='m-1'
+						onClick={() => deleteAction(todo)}
+					>
+						{TrashIcon}
+					</Button>
+				</td>
+			</tr>
+		)));
 	};
 
 	return (

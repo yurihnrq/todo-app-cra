@@ -51,13 +51,16 @@
 .sideNavEnter {
 	opacity: 0;
 }
+
 .sideNavEnterActive {
 	opacity: 1;
 	transition: all 150ms;
 }
+
 .sideNavExit {
 	opacity: 1;
 }
+
 .sideNavExitActive {
 	opacity: 0;
 	transition: all 150ms;
