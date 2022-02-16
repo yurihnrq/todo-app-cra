@@ -30,7 +30,7 @@
 
 .Header .sideNav {
   @apply absolute w-full h-screen overflow-hidden top-0 left-0 px-4 z-50;
-  @apply bg-gradient-to-tr from-blue-600 to-violet-600;
+  @apply bg-gradient-to-b from-blue-600 to-violet-600;
 }
 
 .Header .sideNav div {
