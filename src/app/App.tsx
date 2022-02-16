@@ -10,22 +10,22 @@ import AuthProvider from '../context/AuthContext';
 import PublicRoutes from '../routes/PublicRoutes';
 
 function App() {
-	return (
-		<Router>
-			<AuthProvider>
-				<Routes>
-					<Route path='/sobre' element={<About />} />
-					<Route element={<PublicRoutes />}>
-						<Route path='/login' element={<Login />} />
-						<Route path='/cadastro' element={<Signup />} />
-					</Route>
-					<Route element={<PrivateRoutes />}>
-						<Route path='/' element={<Todo />} />
-					</Route>
-				</Routes>
-			</AuthProvider>
-		</Router>
-	);
+  return (
+    <Router>
+      <AuthProvider>
+        <Routes>
+          <Route path='/sobre' element={<About />} />
+          <Route element={<PublicRoutes />}>
+            <Route path='/login' element={<Login />} />
+            <Route path='/cadastro' element={<Signup />} />
+          </Route>
+          <Route element={<PrivateRoutes />}>
+            <Route path='/' element={<Todo />} />
+          </Route>
+        </Routes>
+      </AuthProvider>
+    </Router>
+  );
 }
 
 export default App;

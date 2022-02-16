@@ -1,31 +1,31 @@
 .About {
-	max-width: 800px;
-	margin: 0 auto;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .About * {
-	@apply text-justify;
+  @apply text-justify;
 }
 
 .About h1 {
-	@apply text-2xl mb-3;
+  @apply text-2xl mb-3;
 }
 
 .About h2 {
-	@apply text-xl mb-2;
+  @apply text-xl mb-2;
 }
 
 .About p {
-	@apply mb-2;
+  @apply mb-2;
 }
 
 .About ul {
-	@apply pl-8 list-disc
+  @apply pl-8 list-disc;
 }
 .About ul li {
-	@apply my-1;
+  @apply my-1;
 }
 
 .About ul li::marker {
-	content: "➡️ ";
+  content: '➡️ ';
 }

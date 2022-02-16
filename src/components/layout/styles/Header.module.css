@@ -1,67 +1,66 @@
 .Header {
-	@apply flex justify-between p-4;
-	@apply bg-gradient-to-b from-blue-600 to-violet-600;
-	@apply text-white;
+  @apply flex justify-between p-4;
+  @apply bg-gradient-to-b from-blue-600 to-violet-600;
+  @apply text-white;
 }
 
 .Header .logo {
-	@apply flex justify-center md:justify-start;
+  @apply flex justify-center md:justify-start;
 }
 
 .Header .logo span {
-	@apply text-2xl inline align-middle;
+  @apply text-2xl inline align-middle;
 }
 
 .Header .logo svg {
-	@apply h-11 inline;
+  @apply h-11 inline;
 }
 
 .Header .buttonContainer {
-	@apply flex flex-row justify-center gap-4 sm:hidden;
+  @apply flex flex-row justify-center gap-4 sm:hidden;
 }
 
 .Header .nav {
-	@apply hidden sm:flex flex-row justify-end items-center;
+  @apply hidden sm:flex flex-row justify-end items-center;
 }
 
 .Header a {
-	@apply mx-2 flex items-center justify-center flex-row;
+  @apply mx-2 flex items-center justify-center flex-row;
 }
 
 .Header .sideNav {
-	@apply absolute w-full h-screen overflow-hidden top-0 left-0 px-4 z-50;
-	@apply bg-gradient-to-tr from-blue-600 to-violet-600;
+  @apply absolute w-full h-screen overflow-hidden top-0 left-0 px-4 z-50;
+  @apply bg-gradient-to-tr from-blue-600 to-violet-600;
 }
 
 .Header .sideNav div {
-	@apply flex flex-row justify-end items-center gap-7;
-	height: 76px;
+  @apply flex flex-row justify-end items-center gap-7;
+  height: 76px;
 }
 
 .Header .sideNav nav {
-	@apply flex flex-col gap-2;
+  @apply flex flex-col gap-2;
 }
 
-
 .Header .sideNav a {
-	@apply text-xl p-1;
+  @apply text-xl p-1;
 }
 
 /* CSSTransition classes */
 .sideNavEnter {
-	opacity: 0;
+  opacity: 0;
 }
 
 .sideNavEnterActive {
-	opacity: 1;
-	transition: all 150ms;
+  opacity: 1;
+  transition: all 150ms;
 }
 
 .sideNavExit {
-	opacity: 1;
+  opacity: 1;
 }
 
 .sideNavExitActive {
-	opacity: 0;
-	transition: all 150ms;
+  opacity: 0;
+  transition: all 150ms;
 }
