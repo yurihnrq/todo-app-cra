@@ -1,8 +1,8 @@
 .Footer {
-	@apply absolute bottom-0;
-	@apply border-t-2 w-full text-xs text-center;
+  @apply absolute bottom-0;
+  @apply border-t-2 w-full text-xs text-center;
 }
 
 .Footer p {
-	@apply m-5;
+  @apply m-5;
 }

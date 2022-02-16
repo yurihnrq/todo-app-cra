@@ -1,75 +1,71 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import firebase from '../backend/config';
 import {
-	getAuth,
-	User,
-	UserCredential,
-	signInWithEmailAndPassword,
-	createUserWithEmailAndPassword,
-	onAuthStateChanged,
-	signOut
+  getAuth,
+  User,
+  UserCredential,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
 } from 'firebase/auth';
 
 interface IAuthContext {
-	user: User | null,
-	loading: boolean,
-	login?: (email: string, password: string) => Promise<UserCredential>,
-	signup?: (email: string, password: string) => Promise<UserCredential>
-	logout?: () => Promise<void>
+  user: User | null;
+  loading: boolean;
+  login?: (email: string, password: string) => Promise<UserCredential>;
+  signup?: (email: string, password: string) => Promise<UserCredential>;
+  logout?: () => Promise<void>;
 }
 
 const initialContext: IAuthContext = {
-	user: null,
-	loading: true
+  user: null,
+  loading: true,
 };
 
 const AuthContext = createContext<IAuthContext>(initialContext);
 export const useAuth = () => {
-	return useContext(AuthContext);
+  return useContext(AuthContext);
 };
 
 const auth = getAuth(firebase);
 
 const AuthProvider: React.FC = ({ children }) => {
-	const [user, setUser] = useState<User | null>(null);
-	const [loading, setLoading] = useState<boolean>(true);
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
-	const login = (email: string, password: string) => {
-		return signInWithEmailAndPassword(auth, email, password);
-	};
+  const login = (email: string, password: string) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
-	const signup = (email: string, password: string) => {
-		return createUserWithEmailAndPassword(auth, email, password);
-	};
+  const signup = (email: string, password: string) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
 
-	const logout = () => {
-		return signOut(auth);
-	};
+  const logout = () => {
+    return signOut(auth);
+  };
 
-	const value: IAuthContext = {
-		user,
-		loading,
-		login,
-		signup,
-		logout,
-	};
+  const value: IAuthContext = {
+    user,
+    loading,
+    login,
+    signup,
+    logout,
+  };
 
-	useEffect(() => {
-		onAuthStateChanged(auth, user => {
-			setUser(user);
-			setLoading(false);
-		});
+  useEffect(() => {
+    onAuthStateChanged(auth, user => {
+      setUser(user);
+      setLoading(false);
+    });
 
-		return () => {
-			setUser(null);
-		};
-	}, []);
+    return () => {
+      setUser(null);
+    };
+  }, []);
 
-	return (
-		<AuthContext.Provider value={value}>
-			{children}
-		</AuthContext.Provider>
-	);
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export default AuthProvider;

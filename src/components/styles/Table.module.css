@@ -1,89 +1,89 @@
 .Table {
-	@apply mt-5;
+  @apply mt-5;
 }
 
 .Table th {
-	@apply text-xl;
+  @apply text-xl;
 }
 
 .Table .row {
-	@apply p-1 rounded-md;
-	display: grid;
-	grid-template-columns: 0.1fr 1fr 0.3fr 0.2fr;
-	align-items: center;
+  @apply p-1 rounded-md;
+  display: grid;
+  grid-template-columns: 0.1fr 1fr 0.3fr 0.2fr;
+  align-items: center;
 }
 
 .Table .row label {
-	@apply w-full text-left pl-4;
+  @apply w-full text-left pl-4;
 }
 
 .Table .row label.done {
-	text-decoration: line-through;
+  text-decoration: line-through;
 }
 
 .Table .row .date {
-	@apply hidden sm:flex;
+  @apply hidden sm:flex;
 }
 
 .Table td {
-	@apply flex justify-center overflow-auto;
+  @apply flex justify-center overflow-auto;
 }
 
 .Table td::-webkit-scrollbar {
-	height: 5px;
-	@apply rounded-lg;
+  height: 5px;
+  @apply rounded-lg;
 }
 
 .Table td::-webkit-scrollbar-track {
-	background: #f1f1f1;
+  background: #f1f1f1;
 }
- 
- /* Handle */
+
+/* Handle */
 .Table td::-webkit-scrollbar-thumb {
-	@apply bg-slate-300 rounded-lg;
+  @apply bg-slate-300 rounded-lg;
 }
- 
- /* Handle on hover */
+
+/* Handle on hover */
 .Table td::-webkit-scrollbar-thumb:hover {
-	background: #555;
+  background: #555;
 }
 
 .Table td:last-child {
-	@apply justify-end;
+  @apply justify-end;
 }
 
-.Table svg{
-	@apply h-6;
+.Table svg {
+  @apply h-6;
 }
 
 .Table .removeButton {
-	@apply text-white bg-gradient-to-tl from-red-700 to-orange-600;
-	@apply hover:bg-gradient-to-tl hover:from-red-600 hover:to-orange-500;
-	@apply p-2 rounded-full;
+  @apply text-white bg-gradient-to-tl from-red-700 to-orange-600;
+  @apply hover:bg-gradient-to-tl hover:from-red-600 hover:to-orange-500;
+  @apply p-2 rounded-full;
 }
 
 @media (max-width: 640px) {
-	.Table .row {
-		grid-template-columns: 0.1fr 1fr 0.2fr;
-	}
+  .Table .row {
+    grid-template-columns: 0.1fr 1fr 0.2fr;
+  }
 }
 
 /* CSSTransition classes */
 
 .rowEnter {
-	opacity: 0;
+  opacity: 0;
 }
 
 .rowEnterActive {
-	opacity: 1;
-	transition: opacity 300ms;
+  opacity: 1;
+  transition: opacity 300ms;
 }
 
 .rowExit {
-	opacity: 1;
+  opacity: 1;
 }
 
 .rowExitActive {
-	opacity: 0;
-	transition: opacity 300ms;
+  opacity: 0;
+  transition: opacity 300ms;
 }

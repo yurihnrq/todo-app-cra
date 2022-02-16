@@ -3,67 +3,67 @@ import TodoRepo from '../../core/TodoRepo';
 import { database } from '../config';
 import { User } from 'firebase/auth';
 import {
-	collection,
-	doc,
-	addDoc,
-	getDocs,
-	deleteDoc,
-	updateDoc,
-	query,
-	orderBy
+  collection,
+  doc,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  updateDoc,
+  query,
+  orderBy
 } from 'firebase/firestore';
 
 class TodoCollection implements TodoRepo {
-	async save(todo: Todo, user: User | null): Promise<Todo> {
-		if (!user)
-			throw new Error('Usuário não instanciado.');
+  async save(todo: Todo, user: User | null): Promise<Todo> {
+    if (!user)
+      throw new Error('Usuário não instanciado.');
 
-		const dbReturn = await addDoc(collection(database, `todos\\${user.uid}`), {
-			description: todo.description,
-			done: todo.done,
-			createdAt: todo.createdAt.toJSON()
-		});
+    const dbReturn = await addDoc(collection(database, `todos\\${user.uid}`), {
+      description: todo.description,
+      done: todo.done,
+      createdAt: todo.createdAt.toJSON()
+    });
 
-		return new Todo(todo.description, todo.done, todo.createdAt, dbReturn.id);
-	}
+    return new Todo(todo.description, todo.done, todo.createdAt, dbReturn.id);
+  }
 
-	async delete(todo: Todo, user: User | null): Promise<void> {
-		if (!user)
-			throw new Error('Usuário não instanciado.');
-		if (!todo || !todo.id)
-			throw new Error('Objeto Todo não existe.');
+  async delete(todo: Todo, user: User | null): Promise<void> {
+    if (!user)
+      throw new Error('Usuário não instanciado.');
+    if (!todo || !todo.id)
+      throw new Error('Objeto Todo não existe.');
 
-		const todoRef = doc(database, `todos\\${user.uid}`, todo.id);
-		await deleteDoc(todoRef);
-	}
+    const todoRef = doc(database, `todos\\${user.uid}`, todo.id);
+    await deleteDoc(todoRef);
+  }
 
-	async update(todo: Todo, user: User | null): Promise<void> {
-		if (!user)
-			throw new Error('Usuário não instanciado.');
+  async update(todo: Todo, user: User | null): Promise<void> {
+    if (!user)
+      throw new Error('Usuário não instanciado.');
 
-		const todoRef = doc(database, `todos\\${user.uid}`, todo.id || '');
-		await updateDoc(todoRef, {
-			description: todo.description,
-			done: todo.done,
-			createdAt: todo.createdAt.toJSON()
-		});
-	}
+    const todoRef = doc(database, `todos\\${user.uid}`, todo.id || '');
+    await updateDoc(todoRef, {
+      description: todo.description,
+      done: todo.done,
+      createdAt: todo.createdAt.toJSON()
+    });
+  }
 
-	async getAll(user: User | null): Promise<Todo[]> {
-		const todos: Todo[] = [];
-		if (!user)
-			throw new Error('Usuário não instanciado.');
+  async getAll(user: User | null): Promise<Todo[]> {
+    const todos: Todo[] = [];
+    if (!user)
+      throw new Error('Usuário não instanciado.');
 			
-		const dataQuery = query(collection(database, `todos\\${user.uid}`), orderBy('createdAt', 'desc'));
-		const todosSnapshop = await getDocs(dataQuery);
+    const dataQuery = query(collection(database, `todos\\${user.uid}`), orderBy('createdAt', 'desc'));
+    const todosSnapshop = await getDocs(dataQuery);
 
-		todosSnapshop.forEach(doc => {
-			const todo = doc.data();
-			todos.push(new Todo(todo.description, todo.done, new Date(todo.createdAt), doc.id));
-		});
+    todosSnapshop.forEach(doc => {
+      const todo = doc.data();
+      todos.push(new Todo(todo.description, todo.done, new Date(todo.createdAt), doc.id));
+    });
 
-		return todos;
-	}
+    return todos;
+  }
 }
 
 export default TodoCollection;
