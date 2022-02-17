@@ -10,15 +10,12 @@ const SignupForm: React.FC = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [
-    passwordConfirm,
-    setPasswordConfirm
-  ] = useState<string>('');
+  const [passwordConfirm, setPasswordConfirm] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const { signup } = useAuth();
 
-  const formHandler: FormEventHandler<HTMLFormElement> = async (event) => {
+  const formHandler: FormEventHandler<HTMLFormElement> = async event => {
     event.preventDefault();
 
     if (password.length < 6) {
@@ -34,8 +31,7 @@ const SignupForm: React.FC = () => {
     try {
       setError(null);
       setLoading(true);
-      if (signup)
-        await signup(email, password);
+      if (signup) await signup(email, password);
     } catch (error) {
       setError('Falha ao realizar cadastro. Tente novamente mais tarde.');
     }
@@ -44,47 +40,46 @@ const SignupForm: React.FC = () => {
     navigate('/');
   };
 
-
-
   return (
     <form className={styles.Form} onSubmit={formHandler}>
-      {error !== null ? (
-        <span className={styles.warning}>Erro: {error}</span>
-      ) : (
-        null
-      )}
-      <label htmlFor='email'>
-				Email
-      </label>
+      {error !== null ? <span className={styles.warning}>Erro: {error}</span> : null}
+      <label htmlFor='email'>Email</label>
       <Input
-        id='email' value={email} type='email'
+        id='email'
+        value={email}
+        type='email'
         onChange={({ target }) => setEmail(target.value)}
-        placeholder='Digite seu email' required
+        placeholder='Digite seu email'
+        required
       />
-      <label htmlFor='password'>
-				Senha
-      </label>
+      <label htmlFor='password'>Senha</label>
       <Input
-        id='password' value={password} type='password'
+        id='password'
+        value={password}
+        type='password'
         onChange={({ target }) => setPassword(target.value)}
-        placeholder='Digite sua senha' required minLength={6}
+        placeholder='Digite sua senha'
+        required
+        minLength={6}
       />
-      <label htmlFor='passwordConfirm'>
-				Confirmar senha
-      </label>
+      <label htmlFor='passwordConfirm'>Confirmar senha</label>
       <Input
-        id='passwordConfirm' value={passwordConfirm}
-        type='password' onChange={({ target }) => setPasswordConfirm(target.value)}
-        placeholder='Digite sua senha novamente' required minLength={6}
+        id='passwordConfirm'
+        value={passwordConfirm}
+        type='password'
+        onChange={({ target }) => setPasswordConfirm(target.value)}
+        placeholder='Digite sua senha novamente'
+        required
+        minLength={6}
       />
       <Button color='blue' label='Realizar cadastro' disabled={loading}>
-				Cadastrar-se
+        Cadastrar-se
       </Button>
       <hr className='my-4 bg-slate-300' />
       <span className='text-sm text-center'>
-				Já é cadastrado? &nbsp;
+        Já é cadastrado? &nbsp;
         <Link to='/login' className={styles.link}>
-					Realize login
+          Realize login
         </Link>
       </span>
     </form>

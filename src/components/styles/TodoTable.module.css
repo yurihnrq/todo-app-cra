@@ -13,6 +13,14 @@
   align-items: center;
 }
 
+.Table .row:nth-child(2n) {
+  @apply bg-slate-300;
+}
+
+:global(.dark) .row:nth-child(2n) {
+  @apply bg-slate-700 !important;
+}
+
 .Table .row label {
   @apply w-full text-left pl-4;
 }

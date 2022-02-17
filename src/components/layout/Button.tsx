@@ -12,7 +12,7 @@ interface IButton {
 const Button: React.FC<IButton> = ({ className, children, label, color, onClick, disabled }) => {
   let colorStyles = styles.blue;
   if (color === 'red') colorStyles = styles.red;
-  if (color === 'green') colorStyles = styles.blue;
+  if (color === 'green') colorStyles = styles.green;
 
   return (
     <button
