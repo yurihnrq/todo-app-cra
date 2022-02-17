@@ -3,7 +3,7 @@ import styles from './styles/Input.module.css';
 
 interface IInput {
   id?: string;
-  type: string;
+  type: React.HTMLInputTypeAttribute;
   value: string | number | undefined;
   required?: boolean;
   min?: number;
@@ -26,7 +26,7 @@ const Input: React.FC<IInput> = ({
   minLength,
   className,
   placeholder,
-  onChange,
+  onChange
 }) => {
   return (
     <input
@@ -40,11 +40,7 @@ const Input: React.FC<IInput> = ({
       minLength={minLength}
       onChange={onChange}
       placeholder={placeholder}
-      className={`
-				${styles.Input} ${className} 
-				dark:bg-slate-500 dark:text-white
-				dark:placeholder:text-slate-300
-			`}
+      className={`${styles.Input} ${className}`}
     />
   );
 };
@@ -54,7 +50,7 @@ Input.defaultProps = {
   placeholder: '',
   onChange: e => {
     console.log(e);
-  },
+  }
 };
 
 export default Input;

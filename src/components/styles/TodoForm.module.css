@@ -12,7 +12,7 @@
 }
 
 .Form .addButton {
-  @apply flex flex-row items-center pr-4 my-3 sm:my-0;
+  @apply flex flex-row items-center pr-4 my-3 sm:my-0 ml-3 h-10;
 }
 
 .Form .addButton svg {
