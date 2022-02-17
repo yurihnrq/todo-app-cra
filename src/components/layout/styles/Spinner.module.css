@@ -1,0 +1,16 @@
+.Spinner {
+  @apply h-14 w-14 mx-auto rounded-full;
+  @apply animate-spin;
+}
+
+.Spinner.blue {
+  @apply border-blue-200 border-4 border-b-blue-500;
+}
+
+.Spinner.green {
+  @apply border-green-200 border-4 border-b-green-500;
+}
+
+.Spinner.red {
+  @apply border-red-200 border-4 border-b-red-500;
+}

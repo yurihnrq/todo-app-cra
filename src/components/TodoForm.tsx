@@ -5,22 +5,29 @@ import { PlusIcon } from './Icons';
 import styles from './styles/TodoForm.module.css';
 
 interface IForm {
-  addAction: (todo: string) => void;
+  addTodo: (todo: string) => void;
 }
 
-const Form: React.FC<IForm> = ({ addAction }) => {
+const Form: React.FC<IForm> = ({ addTodo }) => {
   const [text, setText] = useState<string>('');
-  const [warning, setWarning] = useState<boolean>(false);
+  const [warning, setWarning] = useState<string | null>(null);
 
   const formHandler: FormEventHandler<HTMLFormElement> = event => {
     event.preventDefault();
 
-    if (text.length < 2) setWarning(true);
-    else {
-      setWarning(false);
-      addAction(text);
-      setText('');
+    if (text.length < 2) {
+      setWarning('Você deve inserir ao menos dois caracteres.');
+      return;
     }
+
+    if (text.length > 60) {
+      setWarning('Você não pode inserir mais de 60 caracteres.');
+      return;
+    }
+
+    setWarning(null);
+    addTodo(text);
+    setText('');
   };
 
   return (
@@ -32,16 +39,14 @@ const Form: React.FC<IForm> = ({ addAction }) => {
           value={text}
           onChange={e => setText(e.target.value)}
           placeholder='Insira seu a fazer aqui...'
-          maxLength={45}
+          maxLength={60}
         />
         <Button className={styles.addButton} color='green' label='Add Todo'>
           {PlusIcon}
           Adicionar
         </Button>
       </div>
-      {warning ? (
-        <span className={styles.warning}>Você deve inserir ao menos dois caracteres.</span>
-      ) : null}
+      {warning ? <span className={styles.warning}>{warning}</span> : null}
     </form>
   );
 };
