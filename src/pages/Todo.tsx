@@ -21,7 +21,7 @@ const Home: React.FC = () => {
           {todos.length > 0 ? (
             <TodoRender todos={todos} deleteTodo={deleteTodo} updateTodo={updateTodo} />
           ) : (
-            <h3>Insira uma tarefa no campo acima. ⬆️📝</h3>
+            <h3 className='mt-5'>Insira uma tarefa no campo acima. ⬆️📝</h3>
           )}
         </section>
       </Layout>

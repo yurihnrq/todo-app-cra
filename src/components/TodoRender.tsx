@@ -48,13 +48,13 @@ const TodoRender: React.FC<ITodoRender> = ({ todos, deleteTodo, updateTodo }) =>
       {undoneTodos.length > 0 ? (
         <table className={styles.Table}>
           <caption>A fazer:</caption>
-          {renderTodos(undoneTodos)}
+          <tbody>{renderTodos(undoneTodos)}</tbody>
         </table>
       ) : null}
       {doneTodos.length > 0 ? (
         <table className={styles.Table}>
           <caption>Concluído:</caption>
-          {renderTodos(doneTodos)}
+          <tbody>{renderTodos(doneTodos)}</tbody>
         </table>
       ) : null}
     </>
