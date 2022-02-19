@@ -3,11 +3,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Todo from '../pages/Todo';
 import About from '../pages/About';
-import PrivateRoutes from '../routes/PrivateRoutes';
 import Login from '../pages/Login';
 import Signup from '../pages/Signup';
+import Recovery from '../pages/Recovery/Recovery';
+import ResetPassword from '../pages/Recovery/ResetPassword';
 import AuthProvider from '../context/AuthContext';
 import PublicRoutes from '../routes/PublicRoutes';
+import PrivateRoutes from '../routes/PrivateRoutes';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path='/sobre' element={<About />} />
+          <Route path='/recuperacao' element={<Recovery />} />
+          <Route path='/recuperacao/reset' element={<ResetPassword />} />
           <Route element={<PublicRoutes />}>
             <Route path='/login' element={<Login />} />
             <Route path='/cadastro' element={<Signup />} />

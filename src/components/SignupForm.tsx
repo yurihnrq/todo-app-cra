@@ -2,7 +2,8 @@ import React, { FormEventHandler, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Input from './layout/Input';
 import Button from './layout/Button';
-import styles from './styles/Form.module.css';
+import Form from './layout/Form';
+import Alert from './layout/Alert';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
@@ -34,6 +35,7 @@ const SignupForm: React.FC = () => {
       if (signup) await signup(email, password);
     } catch (error) {
       setError('Falha ao realizar cadastro. Tente novamente mais tarde.');
+      return;
     }
 
     setLoading(false);
@@ -41,8 +43,8 @@ const SignupForm: React.FC = () => {
   };
 
   return (
-    <form className={styles.Form} onSubmit={formHandler}>
-      {error !== null ? <span className={styles.warning}>Erro: {error}</span> : null}
+    <Form onSubmit={formHandler}>
+      {error !== null ? <Alert color='red'>{error}</Alert> : null}
       <label htmlFor='email'>Email</label>
       <Input
         id='email'
@@ -78,11 +80,9 @@ const SignupForm: React.FC = () => {
       <hr className='my-4 bg-slate-300' />
       <span className='text-sm text-center'>
         Já é cadastrado? &nbsp;
-        <Link to='/login' className={styles.link}>
-          Realize login
-        </Link>
+        <Link to='/login'>Realize login</Link>
       </span>
-    </form>
+    </Form>
   );
 };
 
