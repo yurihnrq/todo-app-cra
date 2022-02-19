@@ -8,6 +8,8 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  sendPasswordResetEmail,
+  confirmPasswordReset
 } from 'firebase/auth';
 
 interface IAuthContext {
@@ -16,11 +18,13 @@ interface IAuthContext {
   login?: (email: string, password: string) => Promise<UserCredential>;
   signup?: (email: string, password: string) => Promise<UserCredential>;
   logout?: () => Promise<void>;
+  requestPasswordReset?: (email: string) => Promise<void>;
+  setNewPassword?: (code: string, newPassword: string) => Promise<void>;
 }
 
 const initialContext: IAuthContext = {
   user: null,
-  loading: true,
+  loading: true
 };
 
 const AuthContext = createContext<IAuthContext>(initialContext);
@@ -46,12 +50,22 @@ const AuthProvider: React.FC = ({ children }) => {
     return signOut(auth);
   };
 
+  const requestPasswordReset = (email: string) => {
+    return sendPasswordResetEmail(auth, email);
+  };
+
+  const setNewPassword = (code: string, newPassword: string) => {
+    return confirmPasswordReset(auth, code, newPassword);
+  };
+
   const value: IAuthContext = {
     user,
     loading,
     login,
     signup,
     logout,
+    requestPasswordReset,
+    setNewPassword
   };
 
   useEffect(() => {

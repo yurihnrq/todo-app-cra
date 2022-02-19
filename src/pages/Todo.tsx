@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../components/layout/Layout';
+import Layout from '../components/Layout';
 import TodoRender from '../components/TodoRender';
 import TodoForm from '../components/TodoForm';
 import styles from './styles/Todo.module.css';

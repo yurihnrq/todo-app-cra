@@ -13,6 +13,7 @@ interface IInput {
   className?: string;
   placeholder?: string | undefined;
   onChange?: ChangeEventHandler<HTMLInputElement>;
+  disabled?: boolean
 }
 
 const Input: React.FC<IInput> = ({
@@ -26,7 +27,8 @@ const Input: React.FC<IInput> = ({
   minLength,
   className,
   placeholder,
-  onChange
+  onChange,
+  disabled
 }) => {
   return (
     <input
@@ -41,6 +43,7 @@ const Input: React.FC<IInput> = ({
       onChange={onChange}
       placeholder={placeholder}
       className={`${styles.Input} ${className}`}
+      disabled={disabled}
     />
   );
 };
@@ -50,7 +53,8 @@ Input.defaultProps = {
   placeholder: '',
   onChange: e => {
     console.log(e);
-  }
+  },
+  disabled: false
 };
 
 export default Input;

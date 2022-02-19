@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "todo-yuri-hnrq"
-  }
+    "main": "todo-yuri-hnrq",
+    "dev": "todo-yuri-hnrq-dev"
+  },
+  "targets": {}
 }

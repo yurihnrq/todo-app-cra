@@ -35,6 +35,13 @@
   @apply active:from-green-800 active:to-emerald-700;
 }
 
+.Button.blue:disabled,
+.Button.red:disabled,
+.Button.green:disabled {
+  @apply from-slate-500 to-slate-700;
+  @apply hover:bg-gradient-to-tl;
+}
+
 .Button.green:focus {
   box-shadow: 0px 0px 0px 3px rgba(22, 163, 74, 0.4);
 }

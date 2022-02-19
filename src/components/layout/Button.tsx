@@ -19,8 +19,7 @@ const Button: React.FC<IButton> = ({ className, children, label, color, onClick,
       className={`${styles.Button} ${className} ${colorStyles}`}
       aria-label={label}
       onClick={onClick}
-      disabled={disabled}
-    >
+      disabled={disabled}>
       {children}
     </button>
   );
@@ -29,7 +28,7 @@ const Button: React.FC<IButton> = ({ className, children, label, color, onClick,
 Button.defaultProps = {
   className: '',
   label: 'Button',
-  disabled: false,
+  disabled: false
 };
 
 export default Button;
