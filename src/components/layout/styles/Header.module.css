@@ -1,7 +1,11 @@
 .Header {
-  @apply flex justify-between p-4;
+  @apply p-4 text-white;
   @apply bg-gradient-to-b from-blue-600 to-violet-600;
-  @apply text-white;
+}
+
+.Header .container {
+  @apply flex justify-between w-full mx-auto;
+  max-width: 1140px;
 }
 
 .Header .logo {
