@@ -49,7 +49,7 @@ const Recovery: React.FC = () => {
           Deseja realizar login? <Link to='/login'>Clique aqui</Link>
         </span>
         <span className='text-sm text-center'>
-          Deseja realizar cadastro? <Link to='/login'>Clique aqui</Link>
+          Deseja realizar cadastro? <Link to='/cadastro'>Clique aqui</Link>
         </span>
       </Form>
     </Layout>
