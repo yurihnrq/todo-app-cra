@@ -35,6 +35,10 @@
   @apply active:from-green-800 active:to-emerald-700;
 }
 
+.Button:disabled {
+  cursor: not-allowed;
+}
+
 .Button.blue:disabled,
 .Button.red:disabled,
 .Button.green:disabled {
