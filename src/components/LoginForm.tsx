@@ -10,18 +10,21 @@ const LoginForm: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
+  const [wait, setWait] = useState<boolean>(false);
   const { login } = useAuth();
 
   const formHandler: FormEventHandler<HTMLFormElement> = async event => {
     event.preventDefault();
-
-    if (login)
-      try {
-        await login(email, password);
-      } catch (error) {
-        setError('Usuário ou senha incorretos. Tente novamente.');
-        console.log(error);
-      }
+    setWait(true);
+    if (login) {
+      await login(email, password)
+        .then(() => setWait(false))
+        .catch(() => {
+          setError('Usuário ou senha incorretos. Tente novamente.');
+          setWait(false);
+          console.log(error);
+        });
+    }
   };
 
   return (
@@ -46,7 +49,7 @@ const LoginForm: React.FC = () => {
         placeholder='Insira sua senha...'
         minLength={6}
       />
-      <Button color='blue' label='Realizar login'>
+      <Button disabled={wait} color='blue' label='Realizar login'>
         Entrar
       </Button>
       <hr className='my-4 bg-slate-300' />

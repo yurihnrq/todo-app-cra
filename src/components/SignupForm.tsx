@@ -18,6 +18,8 @@ const SignupForm: React.FC = () => {
 
   const formHandler: FormEventHandler<HTMLFormElement> = async event => {
     event.preventDefault();
+    setError(null);
+    setLoading(true);
 
     if (password.length < 6) {
       setError('A deve conter pelo menos 6 caracteres.');
@@ -29,17 +31,17 @@ const SignupForm: React.FC = () => {
       return;
     }
 
-    try {
-      setError(null);
-      setLoading(true);
-      if (signup) await signup(email, password);
-    } catch (error) {
-      setError('Falha ao realizar cadastro. Tente novamente mais tarde.');
-      return;
+    if (signup) {
+      await signup(email, password)
+        .then(() => {
+          setLoading(false);
+          navigate('/');
+        })
+        .catch(() => {
+          setError('Falha ao realizar cadastro. Tente novamente mais tarde.');
+          return;
+        });
     }
-
-    setLoading(false);
-    navigate('/');
   };
 
   return (
