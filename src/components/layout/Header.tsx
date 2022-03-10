@@ -28,7 +28,7 @@ const Header: React.FC = () => {
             {theme === 'light' ? MoonIcon : SunIcon}
           </button>
           <button aria-label='Open mobile navbar' onClick={() => setSideNav(!sideNav)}>
-            {MenuIcon}
+            {sideNav ? CloseIcon : MenuIcon}
           </button>
         </div>
         <nav className={styles.nav}>
@@ -63,11 +63,6 @@ const Header: React.FC = () => {
             exitActive: styles.sideNavExitActive
           }}>
           <div className={styles.sideNav}>
-            <div>
-              <button aria-label='Close mobile navbar' onClick={() => setSideNav(!sideNav)}>
-                {CloseIcon}
-              </button>
-            </div>
             <nav>
               <Link to='/' onClick={() => setSideNav(!sideNav)}>
                 Inicio
