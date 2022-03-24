@@ -19,10 +19,10 @@ const LoginForm: React.FC = () => {
     if (login) {
       await login(email, password)
         .then(() => setWait(false))
-        .catch(() => {
+        .catch(e => {
           setError('Usuário ou senha incorretos. Tente novamente.');
           setWait(false);
-          console.log(error);
+          console.error(e);
         });
     }
   };
