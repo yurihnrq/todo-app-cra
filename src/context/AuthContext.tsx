@@ -28,7 +28,7 @@ const initialContext: IAuthContext = {
 };
 
 const AuthContext = createContext<IAuthContext>(initialContext);
-export const useAuth = () => {
+export const useAuthContext = () => {
   return useContext(AuthContext);
 };
 

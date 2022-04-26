@@ -4,14 +4,14 @@ import Input from './layout/Input';
 import Button from './layout/Button';
 import Form from './layout/Form';
 import Alert from './layout/Alert';
-import { useAuth } from '../context/AuthContext';
+import { useAuthContext } from '../context/AuthContext';
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [wait, setWait] = useState<boolean>(false);
-  const { login } = useAuth();
+  const { login } = useAuthContext();
 
   const formHandler: FormEventHandler<HTMLFormElement> = async event => {
     event.preventDefault();

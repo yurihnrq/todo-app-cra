@@ -3,12 +3,10 @@ import Button from './layout/Button';
 import Input from './layout/Input';
 import { PlusIcon } from './Icons';
 import styles from './styles/TodoForm.module.css';
+import { useTodoContext } from '../context/TodoContext';
 
-interface IForm {
-  addTodo: (todo: string) => void;
-}
-
-const Form: React.FC<IForm> = ({ addTodo }) => {
+const Form: React.FC = () => {
+  const { addTodo } = useTodoContext();
   const [text, setText] = useState<string>('');
   const [warning, setWarning] = useState<string | null>(null);
 

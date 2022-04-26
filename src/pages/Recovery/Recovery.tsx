@@ -5,13 +5,13 @@ import Form from '../../components/layout/Form';
 import Input from '../../components/layout/Input';
 import Button from '../../components/layout/Button';
 import Alert from '../../components/layout/Alert';
-import { useAuth } from '../../context/AuthContext';
+import { useAuthContext } from '../../context/AuthContext';
 
 const Recovery: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [verify, setVerify] = useState<boolean>(false);
-  const { requestPasswordReset } = useAuth();
+  const { requestPasswordReset } = useAuthContext();
 
   const submitHandler: FormEventHandler<HTMLFormElement> = event => {
     event.preventDefault();
