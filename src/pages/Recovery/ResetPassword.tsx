@@ -6,7 +6,7 @@ import Form from '../../components/layout/Form';
 import Input from '../../components/layout/Input';
 import Button from '../../components/layout/Button';
 import Alert from '../../components/layout/Alert';
-import { useAuth } from '../../context/AuthContext';
+import { useAuthContext } from '../../context/AuthContext';
 
 const Reset: React.FC = () => {
   const [password, setPassword] = useState<string>('');
@@ -14,7 +14,7 @@ const Reset: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
   const [searchParams] = useSearchParams();
-  const { setNewPassword } = useAuth();
+  const { setNewPassword } = useAuthContext();
 
   const submitHandler: FormEventHandler<HTMLFormElement> = event => {
     event.preventDefault();
