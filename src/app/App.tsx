@@ -7,7 +7,7 @@ import Login from '../pages/Login';
 import Signup from '../pages/Signup';
 import Recovery from '../pages/Recovery/Recovery';
 import ResetPassword from '../pages/Recovery/ResetPassword';
-import AuthProvider from '../context/AuthContext';
+import AuthContext from '../context/AuthContext';
 import PublicRoutes from '../routes/PublicRoutes';
 import PrivateRoutes from '../routes/PrivateRoutes';
 import TodoContext from '../context/TodoContext';
@@ -15,7 +15,7 @@ import TodoContext from '../context/TodoContext';
 function App() {
   return (
     <Router>
-      <AuthProvider>
+      <AuthContext.Provider>
         <TodoContext.Provider>
           <Routes>
             <Route path='/sobre' element={<About />} />
@@ -30,7 +30,7 @@ function App() {
             </Route>
           </Routes>
         </TodoContext.Provider>
-      </AuthProvider>
+      </AuthContext.Provider>
     </Router>
   );
 }

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTodoContext } from '../context/TodoContext';
 import Todo from '../core/Todo';
-import { TrashIcon } from './Icons';
-import Button from './layout/Button';
+import { TrashIcon } from './base/Icons';
+import Button from './base/Button';
 import styles from './styles/TodoRender.module.css';
 
 const TodoRender: React.FC = () => {

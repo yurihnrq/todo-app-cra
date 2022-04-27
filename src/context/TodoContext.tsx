@@ -1,6 +1,7 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import TodoCollection from '../backend/database/TodoCollection';
 import Todo from '../core/Todo';
+import TodoRepo from '../core/TodoRepo';
 import { useAuthContext } from './AuthContext';
 
 interface ITodoContext {
@@ -35,7 +36,7 @@ export const useTodoContext = () => useContext<ITodoContext>(TodoContext);
 
 const TodoProvider: React.FC = ({ children }) => {
   const { user } = useAuthContext();
-  const dataCollection = new TodoCollection();
+  const dataCollection: TodoRepo = new TodoCollection();
   const [todos, setTodos] = useState<Todo[]>([]);
   const [error, setError] = useState<string | null>(null);
 

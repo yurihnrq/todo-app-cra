@@ -1,9 +1,9 @@
 import React, { FormEventHandler, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Input from './layout/Input';
-import Button from './layout/Button';
-import Form from './layout/Form';
-import Alert from './layout/Alert';
+import Input from './base/Input';
+import Button from './base/Button';
+import Form from './base/Form';
+import Alert from './base/Alert';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
 
