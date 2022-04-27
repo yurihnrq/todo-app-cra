@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
-import { CheckIcon, MenuIcon, CloseIcon, MoonIcon, SunIcon } from '../Icons';
+import { CheckIcon, MenuIcon, CloseIcon, MoonIcon, SunIcon } from './Icons';
 import styles from './styles/Header.module.css';
 import useTheme from '../../hooks/useTheme';
 import { useAuthContext } from '../../context/AuthContext';

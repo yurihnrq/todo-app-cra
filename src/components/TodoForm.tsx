@@ -1,7 +1,7 @@
 import React, { FormEventHandler, useState } from 'react';
-import Button from './layout/Button';
-import Input from './layout/Input';
-import { PlusIcon } from './Icons';
+import Button from './base/Button';
+import Input from './base/Input';
+import { PlusIcon } from './base/Icons';
 import styles from './styles/TodoForm.module.css';
 import { useTodoContext } from '../context/TodoContext';
 
