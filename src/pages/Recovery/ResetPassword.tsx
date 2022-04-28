@@ -2,11 +2,11 @@ import React, { FormEventHandler, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Layout from '../../components/Layout';
-import Form from '../../components/layout/Form';
-import Input from '../../components/layout/Input';
-import Button from '../../components/layout/Button';
-import Alert from '../../components/layout/Alert';
-import { useAuth } from '../../context/AuthContext';
+import Form from '../../components/base/Form';
+import Input from '../../components/base/Input';
+import Button from '../../components/base/Button';
+import Alert from '../../components/base/Alert';
+import { useAuthContext } from '../../context/AuthContext';
 
 const Reset: React.FC = () => {
   const [password, setPassword] = useState<string>('');
@@ -14,7 +14,7 @@ const Reset: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
   const [searchParams] = useSearchParams();
-  const { setNewPassword } = useAuth();
+  const { setNewPassword } = useAuthContext();
 
   const submitHandler: FormEventHandler<HTMLFormElement> = event => {
     event.preventDefault();

@@ -3,7 +3,7 @@
 }
 
 .Form div {
-  @apply flex flex-col sm:flex-row items-center mb-2;
+  @apply flex items-center mb-2;
 }
 
 .Form .warning {
@@ -12,7 +12,11 @@
 }
 
 .Form .addButton {
-  @apply flex flex-row items-center pr-4 my-3 sm:my-0 ml-3 h-10;
+  @apply flex flex-row items-center sm:pr-4 my-3 sm:my-0 ml-3 h-10;
+}
+
+.Form .addButton span {
+  @apply hidden sm:inline-block;
 }
 
 .Form .addButton svg {

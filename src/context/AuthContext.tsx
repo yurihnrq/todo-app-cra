@@ -28,7 +28,7 @@ const initialContext: IAuthContext = {
 };
 
 const AuthContext = createContext<IAuthContext>(initialContext);
-export const useAuth = () => {
+export const useAuthContext = () => {
   return useContext(AuthContext);
 };
 
@@ -82,4 +82,7 @@ const AuthProvider: React.FC = ({ children }) => {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-export default AuthProvider;
+export default {
+  Provider: AuthProvider,
+  Consumer: AuthContext.Consumer
+};

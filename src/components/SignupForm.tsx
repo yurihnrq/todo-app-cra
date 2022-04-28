@@ -1,11 +1,11 @@
 import React, { FormEventHandler, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Input from './layout/Input';
-import Button from './layout/Button';
-import Form from './layout/Form';
-import Alert from './layout/Alert';
+import Input from './base/Input';
+import Button from './base/Button';
+import Form from './base/Form';
+import Alert from './base/Alert';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuthContext } from '../context/AuthContext';
 
 const SignupForm: React.FC = () => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const SignupForm: React.FC = () => {
   const [passwordConfirm, setPasswordConfirm] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const { signup } = useAuth();
+  const { signup } = useAuthContext();
 
   const formHandler: FormEventHandler<HTMLFormElement> = async event => {
     event.preventDefault();

@@ -3,23 +3,22 @@ import Layout from '../components/Layout';
 import TodoRender from '../components/TodoRender';
 import TodoForm from '../components/TodoForm';
 import styles from './styles/Todo.module.css';
-import { useAuth } from '../context/AuthContext';
-import useTodos from '../hooks/useTodos';
+import { useAuthContext } from '../context/AuthContext';
+import { useTodoContext } from '../context/TodoContext';
 
 const Home: React.FC = () => {
-  const { user } = useAuth();
+  const { user } = useAuthContext();
   if (user) {
-    const { todos, updateTodo, deleteTodo, addTodo } = useTodos(user);
-
+    const { todos } = useTodoContext();
     return (
       <Layout>
         <section className={styles.Todo}>
           <h2 className='dark:text-slate-200'>
             Olá {user?.email?.slice(0, user?.email?.indexOf('@'))}
           </h2>
-          <TodoForm addTodo={addTodo} />
+          <TodoForm />
           {todos.length > 0 ? (
-            <TodoRender todos={todos} deleteTodo={deleteTodo} updateTodo={updateTodo} />
+            <TodoRender />
           ) : (
             <h3 className='mt-5'>Insira uma tarefa no campo acima. ⬆️📝</h3>
           )}

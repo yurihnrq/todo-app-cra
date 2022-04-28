@@ -1,6 +1,6 @@
 .Header {
   @apply p-4 text-white;
-  @apply bg-gradient-to-b from-blue-600 to-violet-600;
+  @apply bg-blue-600;
 }
 
 .Header .container {
@@ -34,7 +34,7 @@
 
 .Header .sideNav {
   @apply absolute w-full h-screen overflow-hidden left-0 px-4 z-50;
-  @apply bg-gradient-to-t from-blue-600 to-violet-600;
+  @apply bg-blue-600;
   top: 76px;
   height: calc(100vh - 76px);
 }

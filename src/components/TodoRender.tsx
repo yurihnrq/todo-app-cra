@@ -1,16 +1,12 @@
 import React from 'react';
+import { useTodoContext } from '../context/TodoContext';
 import Todo from '../core/Todo';
-import { TrashIcon } from './Icons';
-import Button from './layout/Button';
+import { TrashIcon } from './base/Icons';
+import Button from './base/Button';
 import styles from './styles/TodoRender.module.css';
 
-interface ITodoRender {
-  todos: Todo[];
-  deleteTodo: (todo: Todo) => void;
-  updateTodo: (todo: Todo) => void;
-}
-
-const TodoRender: React.FC<ITodoRender> = ({ todos, deleteTodo, updateTodo }) => {
+const TodoRender: React.FC = () => {
+  const { todos, updateTodo, deleteTodo } = useTodoContext();
   const doneTodos = todos.filter(todo => todo.done);
   const undoneTodos = todos.filter(todo => !todo.done);
 
