@@ -1,9 +1,9 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuthContext } from '../context/AuthContext';
 
 const PrivateRoutes: React.FC = () => {
-  const { user } = useAuth();
+  const { user } = useAuthContext();
   if (user) return <Outlet />;
   else return <Navigate to='/login' />;
 };

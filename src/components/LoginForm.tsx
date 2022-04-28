@@ -1,17 +1,17 @@
 import React, { FormEventHandler, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Input from './layout/Input';
-import Button from './layout/Button';
-import Form from './layout/Form';
-import Alert from './layout/Alert';
-import { useAuth } from '../context/AuthContext';
+import Input from './base/Input';
+import Button from './base/Button';
+import Form from './base/Form';
+import Alert from './base/Alert';
+import { useAuthContext } from '../context/AuthContext';
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [wait, setWait] = useState<boolean>(false);
-  const { login } = useAuth();
+  const { login } = useAuthContext();
 
   const formHandler: FormEventHandler<HTMLFormElement> = async event => {
     event.preventDefault();
@@ -19,10 +19,10 @@ const LoginForm: React.FC = () => {
     if (login) {
       await login(email, password)
         .then(() => setWait(false))
-        .catch(() => {
+        .catch(e => {
           setError('Usuário ou senha incorretos. Tente novamente.');
           setWait(false);
-          console.log(error);
+          console.error(e);
         });
     }
   };

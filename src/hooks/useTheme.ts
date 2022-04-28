@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 
 const useTheme = () => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
-
-  useEffect(() => {
-    if (localStorage.getItem('theme') === 'dark') setTheme('dark');
-  }, []);
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme && storedTheme === 'dark') return 'dark';
+    return 'light';
+  });
 
   useEffect(() => {
     const root = document.querySelector('html');

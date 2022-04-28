@@ -7,19 +7,25 @@ interface IButton {
   color: 'red' | 'blue' | 'green';
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
+  icon?: React.ReactNode;
 }
 
-const Button: React.FC<IButton> = ({ className, children, label, color, onClick, disabled }) => {
-  let colorStyles = styles.blue;
-  if (color === 'red') colorStyles = styles.red;
-  if (color === 'green') colorStyles = styles.green;
-
+const Button: React.FC<IButton> = ({
+  className,
+  children,
+  label,
+  color,
+  onClick,
+  disabled,
+  icon
+}) => {
   return (
     <button
-      className={`${styles.Button} ${className} ${colorStyles}`}
+      className={`${styles.Button} ${className} ${styles[color]}`}
       aria-label={label}
       onClick={onClick}
       disabled={disabled}>
+      {icon}
       {children}
     </button>
   );
