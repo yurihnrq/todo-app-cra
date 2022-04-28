@@ -39,9 +39,8 @@ const Form: React.FC = () => {
           placeholder='Insira seu a fazer aqui...'
           maxLength={60}
         />
-        <Button className={styles.addButton} color='green' label='Add Todo'>
-          {PlusIcon}
-          Adicionar
+        <Button className={styles.addButton} color='green' label='Add Todo' icon={PlusIcon}>
+          <span>Adicionar</span>
         </Button>
       </div>
       {warning ? <span className={styles.warning}>{warning}</span> : null}
