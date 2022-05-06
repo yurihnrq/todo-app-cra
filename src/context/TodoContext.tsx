@@ -41,11 +41,9 @@ const TodoProvider: React.FC = ({ children }) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    getTodos();
-    return () => {
-      setTodos([]);
-    };
-  }, []);
+    if(user)
+      getTodos();
+  }, [user]);
 
   const getTodos = useCallback(() => {
     try {
