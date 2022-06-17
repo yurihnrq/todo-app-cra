@@ -16,12 +16,12 @@ const Home: React.FC = () => {
           <h2 className='dark:text-slate-200'>
             Olá {user?.email?.slice(0, user?.email?.indexOf('@'))}
           </h2>
-          <TodoForm />
           {todos.length > 0 ? (
             <TodoRender />
           ) : (
             <h3 className='mt-5'>Insira uma tarefa no campo acima. ⬆️📝</h3>
           )}
+          <TodoForm />
         </section>
       </Layout>
     );
