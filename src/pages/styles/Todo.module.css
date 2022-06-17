@@ -1,6 +1,11 @@
 .Todo {
-  @apply flex flex-col justify-center mx-auto;
+  @apply flex flex-col mx-auto h-full relative;
   max-width: 800px;
+}
+
+.Todo .todoContainer {
+  @apply flex flex-col-reverse justify-between h-full;
+  @apply sm:flex-col sm:justify-start;
 }
 
 .Todo h2 {
