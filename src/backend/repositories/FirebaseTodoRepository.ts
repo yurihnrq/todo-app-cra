@@ -1,6 +1,6 @@
 import Todo from '../../core/Todo';
-import TodoRepo from '../../core/TodoRepo';
-import { database } from '../config';
+import { ITodoRepository } from '../../core/ITodoRepository';
+import { database } from '../firebase';
 import { User } from 'firebase/auth';
 import {
   collection,
@@ -13,7 +13,7 @@ import {
   orderBy
 } from 'firebase/firestore';
 
-class TodoCollection implements TodoRepo {
+class FirebaseTodoRepository implements ITodoRepository {
   async save(todo: Todo, user: User | null): Promise<Todo> {
     if (!user) throw new Error('Usuário não instanciado.');
 
@@ -64,4 +64,4 @@ class TodoCollection implements TodoRepo {
   }
 }
 
-export default TodoCollection;
+export default FirebaseTodoRepository;
