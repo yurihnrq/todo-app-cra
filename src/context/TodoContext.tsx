@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
-import TodoCollection from '../backend/database/TodoCollection';
+import FirebaseTodoRepository from '../backend/repositories/FirebaseTodoRepository';
 import Todo from '../core/Todo';
-import TodoRepo from '../core/TodoRepo';
+import { ITodoRepository } from '../core/ITodoRepository';
 import { useAuthContext } from './AuthContext';
 
 interface ITodoContext {
@@ -36,18 +36,17 @@ export const useTodoContext = () => useContext<ITodoContext>(TodoContext);
 
 const TodoProvider: React.FC = ({ children }) => {
   const { user } = useAuthContext();
-  const dataCollection: TodoRepo = new TodoCollection();
+  const todoRepository: ITodoRepository = new FirebaseTodoRepository();
   const [todos, setTodos] = useState<Todo[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if(user)
-      getTodos();
+    if (user) getTodos();
   }, [user]);
 
   const getTodos = useCallback(() => {
     try {
-      dataCollection.getAll(user).then(todos => {
+      todoRepository.getAll(user).then(todos => {
         setTodos(todos);
       });
       if (error !== null) setError(null);
@@ -61,7 +60,7 @@ const TodoProvider: React.FC = ({ children }) => {
     (todo: string) => {
       try {
         const todoObj = new Todo(todo, false, new Date());
-        dataCollection.save(todoObj, user);
+        todoRepository.save(todoObj, user);
         getTodos();
         if (error !== null) setError(null);
       } catch (err) {
@@ -75,7 +74,7 @@ const TodoProvider: React.FC = ({ children }) => {
   const deleteTodo = useCallback(
     (todo: Todo) => {
       try {
-        dataCollection.delete(todo, user);
+        todoRepository.delete(todo, user);
         getTodos();
         if (error !== null) setError(null);
       } catch (err) {
@@ -89,7 +88,7 @@ const TodoProvider: React.FC = ({ children }) => {
   const updateTodo = useCallback(
     (todo: Todo) => {
       try {
-        dataCollection.update(todo, user);
+        todoRepository.update(todo, user);
         getTodos();
         if (error !== null) setError(null);
       } catch (err) {

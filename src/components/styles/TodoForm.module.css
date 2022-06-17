@@ -1,5 +1,6 @@
 .Form {
   @apply flex flex-col justify-center sm:justify-between flex-wrap;
+  @apply my-3;
 }
 
 .Form div {
