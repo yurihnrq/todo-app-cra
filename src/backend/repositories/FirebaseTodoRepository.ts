@@ -54,7 +54,7 @@ class FirebaseTodoRepository implements ITodoRepository {
     });
   }
 
-  async getAll(user: User, category = 'default'): Promise<Todo[]> {
+  async getAll(user: User, category: string): Promise<Todo[]> {
     const todos: Todo[] = [];
 
     const dataQuery = query(

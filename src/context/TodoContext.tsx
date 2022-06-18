@@ -73,7 +73,7 @@ const TodoProvider: React.FC = ({ children }) => {
     if (!user) return;
 
     try {
-      const todos = await todoRepository.getAll(user);
+      const todos = await todoRepository.getAll(user, selectedCategory);
 
       setTodos(todos);
 
