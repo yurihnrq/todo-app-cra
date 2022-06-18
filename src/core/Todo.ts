@@ -7,13 +7,7 @@ class Todo {
   #createdAt: Date;
   #category: string;
 
-  constructor(
-    description: string,
-    done: boolean,
-    createdAt: Date,
-    category = 'default',
-    id = uuid()
-  ) {
+  constructor(description: string, done: boolean, createdAt: Date, category: string, id = uuid()) {
     this.#id = id;
     this.#description = description;
     this.#done = done;

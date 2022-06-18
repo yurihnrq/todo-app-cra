@@ -66,7 +66,7 @@ class FirebaseTodoRepository implements ITodoRepository {
     todosSnapshot.forEach(doc => {
       const todo = doc.data();
       todos.push(
-        new Todo(todo.description, todo.done, new Date(todo.createdAt), todo.categry, todo.id)
+        new Todo(todo.description, todo.done, new Date(todo.createdAt), todo.category, todo.id)
       );
     });
 

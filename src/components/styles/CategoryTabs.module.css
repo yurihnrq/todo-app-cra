@@ -7,8 +7,9 @@
 }
 
 .CategoryTabs .tabItem {
-  @apply text-center w-24 mx-2 cursor-pointer relative;
+  @apply text-center h-8 px-2 mx-2 cursor-pointer relative;
   @apply first:ml-0 last:mr-0;
+  min-width: 6rem;
 }
 
 .CategoryTabs .tabItem::after {
