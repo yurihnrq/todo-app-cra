@@ -13,6 +13,7 @@ interface ITodoContext {
   getTodos: () => void;
   updateTodo: (todo: Todo) => void;
   deleteTodo: (todo: Todo) => void;
+  getCategories: () => Promise<string[]>;
 }
 
 const initialContext: ITodoContext = {
@@ -29,6 +30,9 @@ const initialContext: ITodoContext = {
   },
   deleteTodo: () => {
     return;
+  },
+  getCategories: () => {
+    return Promise.resolve([]);
   }
 };
 
@@ -123,6 +127,23 @@ const TodoProvider: React.FC = ({ children }) => {
     [user, getTodos, error]
   );
 
+  const getCategories = useCallback(async () => {
+    if (!user) return [];
+
+    try {
+      const categories = await categoryRepository.getAll(user);
+
+      if (error !== null) setError(null);
+
+      return categories;
+    } catch (err) {
+      setError('Erro: ' + err);
+      console.error(error);
+
+      return [];
+    }
+  }, [user]);
+
   return (
     <TodoContext.Provider
       value={{
@@ -131,7 +152,8 @@ const TodoProvider: React.FC = ({ children }) => {
         addTodo,
         getTodos,
         updateTodo,
-        deleteTodo
+        deleteTodo,
+        getCategories
       }}>
       {children}
     </TodoContext.Provider>
