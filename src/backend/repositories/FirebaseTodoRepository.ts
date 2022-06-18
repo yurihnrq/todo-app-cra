@@ -4,60 +4,70 @@ import { database } from '../firebase';
 import { User } from 'firebase/auth';
 import {
   collection,
-  doc,
   addDoc,
   getDocs,
   deleteDoc,
   updateDoc,
   query,
-  orderBy
+  orderBy,
+  where
 } from 'firebase/firestore';
 
 class FirebaseTodoRepository implements ITodoRepository {
-  async save(todo: Todo, user: User | null): Promise<Todo> {
-    if (!user) throw new Error('Usuário não instanciado.');
-
-    const dbReturn = await addDoc(collection(database, `todos\\${user.uid}`), {
+  async save(todo: Todo, user: User): Promise<Todo> {
+    const dbReturn = await addDoc(collection(database, 'todos', user.uid, todo.category), {
+      id: todo.id,
       description: todo.description,
       done: todo.done,
-      createdAt: todo.createdAt.toJSON()
+      createdAt: todo.createdAt.toJSON(),
+      category: todo.category
     });
 
     return new Todo(todo.description, todo.done, todo.createdAt, dbReturn.id);
   }
 
-  async delete(todo: Todo, user: User | null): Promise<void> {
-    if (!user) throw new Error('Usuário não instanciado.');
-    if (!todo || !todo.id) throw new Error('Objeto Todo não existe.');
+  async delete(todo: Todo, user: User): Promise<void> {
+    const todoQuery = query(
+      collection(database, 'todos', user.uid, todo.category),
+      where('id', '==', todo.id)
+    );
 
-    const todoRef = doc(database, `todos\\${user.uid}`, todo.id);
-    await deleteDoc(todoRef);
-  }
+    const todoSnapshot = await getDocs(todoQuery);
 
-  async update(todo: Todo, user: User | null): Promise<void> {
-    if (!user) throw new Error('Usuário não instanciado.');
-
-    const todoRef = doc(database, `todos\\${user.uid}`, todo.id || '');
-    await updateDoc(todoRef, {
-      description: todo.description,
-      done: todo.done,
-      createdAt: todo.createdAt.toJSON()
+    todoSnapshot.forEach(doc => {
+      deleteDoc(doc.ref);
     });
   }
 
-  async getAll(user: User | null): Promise<Todo[]> {
+  async update(todo: Todo, user: User): Promise<void> {
+    const todoQuery = query(
+      collection(database, 'todos', user.uid, todo.category),
+      where('id', '==', todo.id)
+    );
+
+    const todoSnapshot = await getDocs(todoQuery);
+    const todoDoc = todoSnapshot.docs[0];
+
+    await updateDoc(todoDoc.ref, {
+      description: todo.description,
+      done: todo.done,
+      createdAt: todo.createdAt.toJSON(),
+      category: todo.category
+    });
+  }
+
+  async getAll(user: User, category = 'default'): Promise<Todo[]> {
     const todos: Todo[] = [];
-    if (!user) throw new Error('Usuário não instanciado.');
 
     const dataQuery = query(
-      collection(database, `todos\\${user.uid}`),
+      collection(database, 'todos', user.uid, category),
       orderBy('createdAt', 'desc')
     );
     const todosSnapshot = await getDocs(dataQuery);
 
     todosSnapshot.forEach(doc => {
       const todo = doc.data();
-      todos.push(new Todo(todo.description, todo.done, new Date(todo.createdAt), doc.id));
+      todos.push(new Todo(todo.description, todo.done, new Date(todo.createdAt), todo.id));
     });
 
     return todos;

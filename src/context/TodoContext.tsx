@@ -45,6 +45,8 @@ const TodoProvider: React.FC = ({ children }) => {
   }, [user]);
 
   const getTodos = useCallback(() => {
+    if (!user) return;
+
     try {
       todoRepository.getAll(user).then(todos => {
         setTodos(todos);
@@ -58,6 +60,8 @@ const TodoProvider: React.FC = ({ children }) => {
 
   const addTodo = useCallback(
     (todo: string) => {
+      if (!user) return;
+
       try {
         const todoObj = new Todo(todo, false, new Date());
         todoRepository.save(todoObj, user);
@@ -73,6 +77,8 @@ const TodoProvider: React.FC = ({ children }) => {
 
   const deleteTodo = useCallback(
     (todo: Todo) => {
+      if (!user) return;
+
       try {
         todoRepository.delete(todo, user);
         getTodos();
@@ -87,6 +93,8 @@ const TodoProvider: React.FC = ({ children }) => {
 
   const updateTodo = useCallback(
     (todo: Todo) => {
+      if (!user) return;
+
       try {
         todoRepository.update(todo, user);
         getTodos();

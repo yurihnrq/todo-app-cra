@@ -1,14 +1,24 @@
+import { v4 as uuid } from 'uuid';
+
 class Todo {
-  #id: string | null;
+  #id: string;
   #description: string;
   #done: boolean;
   #createdAt: Date;
+  #category: string;
 
-  constructor(description: string, done: boolean, createdAt: Date, id: string | null = null) {
+  constructor(
+    description: string,
+    done: boolean,
+    createdAt: Date,
+    id = uuid(),
+    category = 'default'
+  ) {
     this.#id = id;
     this.#description = description;
     this.#done = done;
     this.#createdAt = createdAt;
+    this.#category = category;
   }
 
   get id() {
@@ -29,6 +39,10 @@ class Todo {
 
   get createdAt() {
     return this.#createdAt;
+  }
+
+  get category() {
+    return this.#category;
   }
 }
 
