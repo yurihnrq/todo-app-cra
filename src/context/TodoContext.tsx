@@ -8,21 +8,21 @@ import FirebaseCategoryRepository from '../backend/repositories/FirebaseCategory
 
 interface ITodoContext {
   todos: Todo[];
+  categories: string[];
   error: string | null;
   addTodo: (todo: string) => void;
-  getTodos: () => void;
   updateTodo: (todo: Todo) => void;
   deleteTodo: (todo: Todo) => void;
-  getCategories: () => Promise<string[]>;
+  addCategory: (category: string) => void;
+  deleteCategory: (category: string) => void;
+  selectCategory: (category: string) => void;
 }
 
 const initialContext: ITodoContext = {
   todos: [],
+  categories: [],
   error: null,
   addTodo: () => {
-    return;
-  },
-  getTodos: () => {
     return;
   },
   updateTodo: () => {
@@ -31,8 +31,14 @@ const initialContext: ITodoContext = {
   deleteTodo: () => {
     return;
   },
-  getCategories: () => {
-    return Promise.resolve([]);
+  addCategory: () => {
+    return;
+  },
+  deleteCategory: () => {
+    return;
+  },
+  selectCategory: () => {
+    return;
   }
 };
 
@@ -44,14 +50,24 @@ const TodoProvider: React.FC = ({ children }) => {
   const { user } = useAuthContext();
 
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>('default');
   const [error, setError] = useState<string | null>(null);
 
   const todoRepository: ITodoRepository = new FirebaseTodoRepository();
   const categoryRepository: ICategoryRepository = new FirebaseCategoryRepository();
 
   useEffect(() => {
-    if (user) getTodos();
+    if (user) {
+      getCategories();
+    }
   }, [user]);
+
+  useEffect(() => {
+    if (user) {
+      getTodos();
+    }
+  }, [categories, selectedCategory]);
 
   const getTodos = useCallback(async () => {
     if (!user) return;
@@ -69,15 +85,11 @@ const TodoProvider: React.FC = ({ children }) => {
   }, [user, error]);
 
   const addTodo = useCallback(
-    async (todo: string, category = 'default') => {
+    async (todo: string) => {
       if (!user) return;
 
       try {
-        if (!categoryRepository.doesCategoryExist(category, user)) {
-          await categoryRepository.save(category, user);
-        }
-
-        const todoObj = new Todo(todo, false, new Date(), category);
+        const todoObj = new Todo(todo, false, new Date(), selectedCategory);
         await todoRepository.save(todoObj, user);
 
         getTodos();
@@ -128,32 +140,76 @@ const TodoProvider: React.FC = ({ children }) => {
   );
 
   const getCategories = useCallback(async () => {
-    if (!user) return [];
+    if (!user) return;
 
     try {
       const categories = await categoryRepository.getAll(user);
 
-      if (error !== null) setError(null);
+      setCategories(categories);
 
-      return categories;
+      if (error !== null) setError(null);
     } catch (err) {
       setError('Erro: ' + err);
       console.error(error);
-
-      return [];
     }
   }, [user]);
+
+  const addCategory = useCallback(
+    async (category: string) => {
+      if (!user) return;
+
+      try {
+        if (await categoryRepository.doesCategoryExist(category, user)) return;
+        await categoryRepository.save(category, user);
+
+        getCategories();
+
+        if (error !== null) setError(null);
+      } catch (err) {
+        setError('Erro: ' + err);
+        console.error(error);
+      }
+    },
+    [user]
+  );
+
+  const deleteCategory = useCallback(
+    async (category: string) => {
+      if (!user) return;
+
+      try {
+        await categoryRepository.delete(category, user);
+
+        getCategories();
+
+        if (error !== null) setError(null);
+      } catch (err) {
+        setError('Erro: ' + err);
+        console.error(error);
+      }
+    },
+    [user]
+  );
+
+  const selectCategory = useCallback(
+    (category: string) => {
+      setSelectedCategory(category);
+    },
+    [categories]
+  );
 
   return (
     <TodoContext.Provider
       value={{
         todos,
+        categories,
         error,
         addTodo,
-        getTodos,
         updateTodo,
         deleteTodo,
-        getCategories
+        addCategory,
+        deleteCategory,
+        selectCategory
       }}>
       {children}
     </TodoContext.Provider>
