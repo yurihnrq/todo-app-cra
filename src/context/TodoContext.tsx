@@ -60,6 +60,10 @@ const TodoProvider: React.FC = ({ children }) => {
   const categoryRepository: ICategoryRepository = new FirebaseCategoryRepository();
 
   useEffect(() => {
+    if (categories.length === 0) addCategory('default');
+  }, [categories]);
+
+  useEffect(() => {
     if (user) {
       getCategories();
     }

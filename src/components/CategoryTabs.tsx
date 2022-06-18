@@ -19,15 +19,6 @@ const CategoryTabs: React.FC = () => {
             {category}
           </li>
         ))}
-        <li
-          className={`
-              ${selectedCategory === 'teste' ? styles.activeTab : ''}
-              ${styles.tabItem}
-            `}
-          onClick={() => selectCategory('teste')}
-          key={'teste'}>
-          {'teste'}
-        </li>
       </ul>
       <button>+</button>
     </div>
