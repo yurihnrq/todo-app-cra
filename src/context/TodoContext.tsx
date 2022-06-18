@@ -44,13 +44,12 @@ const TodoProvider: React.FC = ({ children }) => {
     if (user) getTodos();
   }, [user]);
 
-  const getTodos = useCallback(() => {
+  const getTodos = useCallback(async () => {
     if (!user) return;
 
     try {
-      todoRepository.getAll(user).then(todos => {
-        setTodos(todos);
-      });
+      const todos = await todoRepository.getAll(user);
+      setTodos(todos);
       if (error !== null) setError(null);
     } catch (err) {
       setError('Erro: ' + err);
@@ -59,12 +58,12 @@ const TodoProvider: React.FC = ({ children }) => {
   }, [user, error]);
 
   const addTodo = useCallback(
-    (todo: string) => {
+    async (todo: string) => {
       if (!user) return;
 
       try {
         const todoObj = new Todo(todo, false, new Date());
-        todoRepository.save(todoObj, user);
+        await todoRepository.save(todoObj, user);
         getTodos();
         if (error !== null) setError(null);
       } catch (err) {
@@ -76,11 +75,11 @@ const TodoProvider: React.FC = ({ children }) => {
   );
 
   const deleteTodo = useCallback(
-    (todo: Todo) => {
+    async (todo: Todo) => {
       if (!user) return;
 
       try {
-        todoRepository.delete(todo, user);
+        await todoRepository.delete(todo, user);
         getTodos();
         if (error !== null) setError(null);
       } catch (err) {
@@ -92,11 +91,11 @@ const TodoProvider: React.FC = ({ children }) => {
   );
 
   const updateTodo = useCallback(
-    (todo: Todo) => {
+    async (todo: Todo) => {
       if (!user) return;
 
       try {
-        todoRepository.update(todo, user);
+        await todoRepository.update(todo, user);
         getTodos();
         if (error !== null) setError(null);
       } catch (err) {
