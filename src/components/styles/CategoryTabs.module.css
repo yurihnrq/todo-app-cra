@@ -21,6 +21,10 @@
   @apply w-full;
 }
 
-.CategoryTabs button {
+.CategoryTabs .button {
   @apply ml-2;
+}
+
+.CategoryTabs .modalButton {
+  @apply w-24 ml-auto;
 }

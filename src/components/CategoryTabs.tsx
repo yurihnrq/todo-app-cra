@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTodoContext } from '../context/TodoContext';
+import Button from './base/Button';
+import Form from './base/Form';
+import Input from './base/Input';
+import Modal from './base/Modal';
 import styles from './styles/CategoryTabs.module.css';
 
 const CategoryTabs: React.FC = () => {
-  const { categories, selectCategory, selectedCategory } = useTodoContext();
+  const { categories, selectCategory, selectedCategory, addCategory } = useTodoContext();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [category, setCategory] = useState('');
 
   return (
     <div className={styles.CategoryTabs}>
@@ -20,7 +26,27 @@ const CategoryTabs: React.FC = () => {
           </li>
         ))}
       </ul>
-      <button>+</button>
+      <button className={styles.button} onClick={() => setIsModalOpen(true)}>
+        &#43;
+      </button>
+      {isModalOpen && (
+        <Modal onClose={() => setIsModalOpen(false)} title='Insira uma categoria'>
+          <Form>
+            <Input
+              type='text'
+              value={category}
+              onChange={({ target }) => setCategory(target.value)}
+            />
+            <Button
+              className={styles.modalButton}
+              color='blue'
+              label='dale'
+              onClick={() => addCategory(category)}>
+              Adicionar
+            </Button>
+          </Form>
+        </Modal>
+      )}
     </div>
   );
 };
