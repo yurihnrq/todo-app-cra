@@ -1,10 +1,11 @@
 import React from 'react';
 import Layout from '../components/Layout';
-import TodoRender from '../components/TodoRender';
 import TodoForm from '../components/TodoForm';
 import styles from './styles/Todo.module.css';
 import { useAuthContext } from '../context/AuthContext';
 import { useTodoContext } from '../context/TodoContext';
+import CategoryTabs from '../components/CategoryTabs';
+import TodoRender from '../components/TodoRender';
 
 const Home: React.FC = () => {
   const { user } = useAuthContext();
@@ -18,7 +19,8 @@ const Home: React.FC = () => {
           </h2>
           <div className={styles.todoContainer}>
             <TodoForm />
-            {todos.length > 0 && <TodoRender />}
+            <CategoryTabs />
+            {todos.length > 0 ? <TodoRender /> : null}
           </div>
         </section>
       </Layout>

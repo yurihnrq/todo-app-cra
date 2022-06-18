@@ -9,6 +9,7 @@ import FirebaseCategoryRepository from '../backend/repositories/FirebaseCategory
 interface ITodoContext {
   todos: Todo[];
   categories: string[];
+  selectedCategory: string;
   error: string | null;
   addTodo: (todo: string) => void;
   updateTodo: (todo: Todo) => void;
@@ -21,6 +22,7 @@ interface ITodoContext {
 const initialContext: ITodoContext = {
   todos: [],
   categories: [],
+  selectedCategory: 'default',
   error: null,
   addTodo: () => {
     return;
@@ -67,7 +69,7 @@ const TodoProvider: React.FC = ({ children }) => {
     if (user) {
       getTodos();
     }
-  }, [categories, selectedCategory]);
+  }, [user, selectedCategory]);
 
   const getTodos = useCallback(async () => {
     if (!user) return;
@@ -82,7 +84,7 @@ const TodoProvider: React.FC = ({ children }) => {
       setError('Erro: ' + err);
       console.error(error);
     }
-  }, [user, error]);
+  }, [user, error, selectedCategory]);
 
   const addTodo = useCallback(
     async (todo: string) => {
@@ -100,7 +102,7 @@ const TodoProvider: React.FC = ({ children }) => {
         console.error(error);
       }
     },
-    [user, getTodos, error]
+    [user, getTodos, error, selectedCategory]
   );
 
   const deleteTodo = useCallback(
@@ -152,7 +154,7 @@ const TodoProvider: React.FC = ({ children }) => {
       setError('Erro: ' + err);
       console.error(error);
     }
-  }, [user]);
+  }, [user, setCategories]);
 
   const addCategory = useCallback(
     async (category: string) => {
@@ -170,7 +172,7 @@ const TodoProvider: React.FC = ({ children }) => {
         console.error(error);
       }
     },
-    [user]
+    [user, getCategories]
   );
 
   const deleteCategory = useCallback(
@@ -188,7 +190,7 @@ const TodoProvider: React.FC = ({ children }) => {
         console.error(error);
       }
     },
-    [user]
+    [user, getCategories]
   );
 
   const selectCategory = useCallback(
@@ -203,6 +205,7 @@ const TodoProvider: React.FC = ({ children }) => {
       value={{
         todos,
         categories,
+        selectedCategory,
         error,
         addTodo,
         updateTodo,

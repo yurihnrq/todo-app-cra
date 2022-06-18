@@ -1,0 +1,26 @@
+.CategoryTabs {
+  @apply flex flex-row;
+}
+
+.CategoryTabs .tabList {
+  @apply flex flex-row;
+}
+
+.CategoryTabs .tabItem {
+  @apply text-center w-24 mx-2 cursor-pointer relative;
+  @apply first:ml-0 last:mr-0;
+}
+
+.CategoryTabs .tabItem::after {
+  @apply border-b-2 border-b-blue-500 absolute left-1/2 -translate-x-1/2;
+  @apply transition-all w-0 h-0 bottom-0;
+  content: '';
+}
+
+.CategoryTabs .activeTab::after {
+  @apply w-full;
+}
+
+.CategoryTabs button {
+  @apply ml-2;
+}
