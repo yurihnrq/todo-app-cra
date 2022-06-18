@@ -11,8 +11,8 @@ class Todo {
     description: string,
     done: boolean,
     createdAt: Date,
-    id = uuid(),
-    category = 'default'
+    category = 'default',
+    id = uuid()
   ) {
     this.#id = id;
     this.#description = description;

@@ -14,16 +14,14 @@ import {
 } from 'firebase/firestore';
 
 class FirebaseTodoRepository implements ITodoRepository {
-  async save(todo: Todo, user: User): Promise<Todo> {
-    const dbReturn = await addDoc(collection(database, 'todos', user.uid, todo.category), {
+  async save(todo: Todo, user: User): Promise<void> {
+    await addDoc(collection(database, 'todos', user.uid, todo.category), {
       id: todo.id,
       description: todo.description,
       done: todo.done,
       createdAt: todo.createdAt.toJSON(),
       category: todo.category
     });
-
-    return new Todo(todo.description, todo.done, todo.createdAt, dbReturn.id);
   }
 
   async delete(todo: Todo, user: User): Promise<void> {
@@ -67,7 +65,9 @@ class FirebaseTodoRepository implements ITodoRepository {
 
     todosSnapshot.forEach(doc => {
       const todo = doc.data();
-      todos.push(new Todo(todo.description, todo.done, new Date(todo.createdAt), todo.id));
+      todos.push(
+        new Todo(todo.description, todo.done, new Date(todo.createdAt), todo.categry, todo.id)
+      );
     });
 
     return todos;

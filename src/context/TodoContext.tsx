@@ -3,6 +3,8 @@ import FirebaseTodoRepository from '../backend/repositories/FirebaseTodoReposito
 import Todo from '../core/Todo';
 import { ITodoRepository } from '../core/ITodoRepository';
 import { useAuthContext } from './AuthContext';
+import ICategoryRepository from '../core/ICategoryRepository';
+import FirebaseCategoryRepository from '../backend/repositories/FirebaseCategoryRepository';
 
 interface ITodoContext {
   todos: Todo[];
@@ -36,9 +38,12 @@ export const useTodoContext = () => useContext<ITodoContext>(TodoContext);
 
 const TodoProvider: React.FC = ({ children }) => {
   const { user } = useAuthContext();
-  const todoRepository: ITodoRepository = new FirebaseTodoRepository();
+
   const [todos, setTodos] = useState<Todo[]>([]);
   const [error, setError] = useState<string | null>(null);
+
+  const todoRepository: ITodoRepository = new FirebaseTodoRepository();
+  const categoryRepository: ICategoryRepository = new FirebaseCategoryRepository();
 
   useEffect(() => {
     if (user) getTodos();
@@ -49,7 +54,9 @@ const TodoProvider: React.FC = ({ children }) => {
 
     try {
       const todos = await todoRepository.getAll(user);
+
       setTodos(todos);
+
       if (error !== null) setError(null);
     } catch (err) {
       setError('Erro: ' + err);
@@ -58,13 +65,19 @@ const TodoProvider: React.FC = ({ children }) => {
   }, [user, error]);
 
   const addTodo = useCallback(
-    async (todo: string) => {
+    async (todo: string, category = 'default') => {
       if (!user) return;
 
       try {
-        const todoObj = new Todo(todo, false, new Date());
+        if (!categoryRepository.doesCategoryExist(category, user)) {
+          await categoryRepository.save(category, user);
+        }
+
+        const todoObj = new Todo(todo, false, new Date(), category);
         await todoRepository.save(todoObj, user);
+
         getTodos();
+
         if (error !== null) setError(null);
       } catch (err) {
         setError('Erro: ' + err);
@@ -80,7 +93,9 @@ const TodoProvider: React.FC = ({ children }) => {
 
       try {
         await todoRepository.delete(todo, user);
+
         getTodos();
+
         if (error !== null) setError(null);
       } catch (err) {
         setError('Erro: ' + err);
@@ -96,7 +111,9 @@ const TodoProvider: React.FC = ({ children }) => {
 
       try {
         await todoRepository.update(todo, user);
+
         getTodos();
+
         if (error !== null) setError(null);
       } catch (err) {
         setError('Erro: ' + err);
