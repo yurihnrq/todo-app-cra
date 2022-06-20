@@ -41,13 +41,16 @@ const Header: React.FC = () => {
           <Link to='/'>Inicio</Link>
           <Link to='/sobre'>Sobre</Link>
           {user ? (
-            <Link
-              to='/login'
-              onClick={() => {
-                if (logout) logout();
-              }}>
-              Sair
-            </Link>
+            <>
+              <Link to='/categorias'>Categorias</Link>
+              <Link
+                to='/login'
+                onClick={() => {
+                  if (logout) logout();
+                }}>
+                Sair
+              </Link>
+            </>
           ) : (
             <Link to='/login'>Login</Link>
           )}
@@ -71,13 +74,16 @@ const Header: React.FC = () => {
                 Sobre
               </Link>
               {user ? (
-                <Link
-                  to='/login'
-                  onClick={() => {
-                    if (logout) logout();
-                  }}>
-                  Sair
-                </Link>
+                <>
+                  <Link to='/categorias'>Categorias</Link>
+                  <Link
+                    to='/login'
+                    onClick={() => {
+                      if (logout) logout();
+                    }}>
+                    Sair
+                  </Link>
+                </>
               ) : (
                 <Link to='/login' onClick={() => setSideNav(!sideNav)}>
                   Login
