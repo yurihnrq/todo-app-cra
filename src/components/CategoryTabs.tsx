@@ -22,7 +22,7 @@ const CategoryTabs: React.FC = () => {
             `}
             onClick={() => selectCategory(category)}
             key={category}>
-            {category}
+            {category === 'default' ? 'Minhas tarefas' : category}
           </li>
         ))}
       </ul>
@@ -31,7 +31,7 @@ const CategoryTabs: React.FC = () => {
       </button>
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)} title='Insira uma categoria'>
-          <Form>
+          <Form onSubmit={e => e.preventDefault()}>
             <Input
               type='text'
               value={category}
@@ -41,7 +41,10 @@ const CategoryTabs: React.FC = () => {
               className={styles.modalButton}
               color='blue'
               label='dale'
-              onClick={() => addCategory(category)}>
+              onClick={() => {
+                addCategory(category);
+                setIsModalOpen(false);
+              }}>
               Adicionar
             </Button>
           </Form>
