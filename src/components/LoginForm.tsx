@@ -1,4 +1,4 @@
-import React, { FormEventHandler, useState } from 'react';
+import React, { FormEventHandler, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Input from './base/Input';
 import Button from './base/Button';
@@ -26,6 +26,12 @@ const LoginForm: React.FC = () => {
         });
     }
   };
+
+  useEffect(() => {
+    return () => {
+      setWait(false);
+    };
+  }, []);
 
   return (
     <Form onSubmit={formHandler}>
