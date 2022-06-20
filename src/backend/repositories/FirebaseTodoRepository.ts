@@ -37,6 +37,19 @@ class FirebaseTodoRepository implements ITodoRepository {
     });
   }
 
+  async deleteByCategory(user: User, category: string): Promise<void> {
+    const todoQuery = query(
+      collection(database, 'todos', user.uid, category),
+      where('category', '==', category)
+    );
+
+    const todoSnapshot = await getDocs(todoQuery);
+
+    todoSnapshot.forEach(doc => {
+      deleteDoc(doc.ref);
+    });
+  }
+
   async update(todo: Todo, user: User): Promise<void> {
     const todoQuery = query(
       collection(database, 'todos', user.uid, todo.category),

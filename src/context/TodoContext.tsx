@@ -188,6 +188,8 @@ const TodoProvider: React.FC = ({ children }) => {
       if (!user) return;
 
       try {
+        await todoRepository.deleteByCategory(user, category);
+
         await categoryRepository.delete(category, user);
 
         getCategories();
