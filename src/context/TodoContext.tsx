@@ -151,6 +151,10 @@ const TodoProvider: React.FC = ({ children }) => {
     try {
       const categories = await categoryRepository.getAll(user);
 
+      const defaultIndex = categories.findIndex(c => c === 'default');
+      categories.splice(defaultIndex, 1);
+      categories.unshift('default');
+
       setCategories(categories);
 
       if (error !== null) setError(null);
