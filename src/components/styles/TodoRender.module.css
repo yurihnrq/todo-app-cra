@@ -4,14 +4,6 @@
   align-items: center;
 }
 
-.TodosTable .row:nth-child(2n) {
-  @apply bg-slate-300;
-}
-
-:global(.dark) .row:nth-child(2n) {
-  @apply bg-slate-700 !important;
-}
-
 .TodosTable .row label {
   @apply w-full text-left pl-4;
 }
@@ -30,16 +22,17 @@
 
 .TodosTable td::-webkit-scrollbar {
   height: 5px;
-  @apply rounded-lg;
+  @apply rounded-md;
 }
 
 .TodosTable td::-webkit-scrollbar-track {
+  @apply rounded-md;
   background: #f1f1f1;
 }
 
 /* Handle */
 .TodosTable td::-webkit-scrollbar-thumb {
-  @apply bg-slate-300 rounded-lg;
+  @apply bg-slate-300 rounded-md;
 }
 
 /* Handle on hover */
@@ -49,16 +42,6 @@
 
 .TodosTable td:last-child {
   @apply justify-end;
-}
-
-.TodosTable svg {
-  @apply h-6;
-}
-
-.TodosTable .removeButton {
-  @apply text-white bg-gradient-to-tl from-red-700 to-orange-600;
-  @apply hover:bg-gradient-to-tl hover:from-red-600 hover:to-orange-500;
-  @apply p-2 rounded-full;
 }
 
 @media (max-width: 640px) {

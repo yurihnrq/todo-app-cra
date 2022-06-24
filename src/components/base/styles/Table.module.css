@@ -1,5 +1,5 @@
 .Table {
-  @apply mt-3;
+  @apply w-full;
 }
 
 .Table caption {
@@ -11,7 +11,7 @@
 }
 
 .Table tr {
-  @apply p-1 rounded-md;
+  @apply rounded-md overflow-auto;
 }
 
 .Table tr:nth-child(2n) {
@@ -20,4 +20,9 @@
 
 :global(.dark) tr:nth-child(2n) {
   @apply bg-slate-700 !important;
+}
+
+.Table td {
+  @apply overflow-y-auto first:rounded-l-md last:rounded-r-md;
+  padding: 6px;
 }
