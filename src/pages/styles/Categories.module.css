@@ -1,3 +1,7 @@
+.CategoriesTable {
+  @apply max-w-3xl mx-auto;
+}
+
 .CategoriesTable td {
   @apply last:text-right;
 }
