@@ -16,7 +16,7 @@ const Header: React.FC = () => {
       <div className={styles.container}>
         <Link to='/' className={styles.logo}>
           <div>
-            {CheckIcon}
+            <CheckIcon className={styles.icon} />
             <span>ToDo App</span>
           </div>
         </Link>
@@ -25,10 +25,10 @@ const Header: React.FC = () => {
             className='p-0 sm:mr-4'
             aria-label='Change theme'
             onClick={() => (theme === 'light' ? setTheme('dark') : setTheme('light'))}>
-            {theme === 'light' ? MoonIcon : SunIcon}
+            {theme === 'light' ? <MoonIcon /> : <SunIcon />}
           </button>
           <button aria-label='Open mobile navbar' onClick={() => setSideNav(!sideNav)}>
-            {sideNav ? CloseIcon : MenuIcon}
+            {sideNav ? <CloseIcon /> : <MenuIcon />}
           </button>
         </div>
         <nav className={styles.nav}>
@@ -36,7 +36,7 @@ const Header: React.FC = () => {
             className='p-0 sm:mr-4'
             aria-label='Change theme'
             onClick={() => (theme === 'light' ? setTheme('dark') : setTheme('light'))}>
-            {theme === 'light' ? MoonIcon : SunIcon}
+            {theme === 'light' ? <MoonIcon /> : <SunIcon />}
           </button>
           <Link to='/'>Inicio</Link>
           <Link to='/sobre'>Sobre</Link>

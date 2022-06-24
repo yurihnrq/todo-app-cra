@@ -16,7 +16,7 @@
   @apply text-2xl inline align-middle;
 }
 
-.Header .logo svg {
+.Header .logo .icon {
   @apply h-11 inline;
 }
 

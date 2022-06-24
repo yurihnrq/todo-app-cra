@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTodoContext } from '../context/TodoContext';
 import Button from './base/Button';
 import Form from './base/Form';
+import { PlusIcon } from './base/Icons';
 import Input from './base/Input';
 import Modal from './base/Modal';
 import styles from './styles/CategoryTabs.module.css';
@@ -27,7 +28,7 @@ const CategoryTabs: React.FC = () => {
         ))}
       </ul>
       <button className={styles.button} onClick={() => setIsModalOpen(true)}>
-        &#43;
+        <PlusIcon />
       </button>
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)} title='Insira uma categoria'>
