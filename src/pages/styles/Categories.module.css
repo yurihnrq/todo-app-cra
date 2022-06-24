@@ -1,7 +1,15 @@
-.CategoriesTable {
+.categoriesTable {
   @apply max-w-3xl mx-auto;
 }
 
-.CategoriesTable td {
+.categoriesTable td {
   @apply last:text-right;
+}
+
+.buttonContainer {
+  @apply flex justify-end mt-3;
+}
+
+.buttonContainer button {
+  @apply last:ml-3;
 }
