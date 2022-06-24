@@ -32,7 +32,7 @@ const TodoRender: React.FC = () => {
         </td>
         <td className={styles.date}>{todo.createdAt.toLocaleDateString('pt-BR')}</td>
         <td>
-          <Button color='red' label='Delete ToDo' className='m-1' onClick={() => deleteTodo(todo)}>
+          <Button color='red' label='Delete ToDo' onClick={() => deleteTodo(todo)}>
             <TrashIcon />
           </Button>
         </td>

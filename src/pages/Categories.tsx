@@ -22,7 +22,6 @@ const Categories: React.FC = () => {
                     <Button
                       color='red'
                       label='Delete ToDo'
-                      className='m-1'
                       onClick={() => deleteCategory(category)}>
                       <TrashIcon />
                     </Button>

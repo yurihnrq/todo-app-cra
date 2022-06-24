@@ -23,6 +23,5 @@
 }
 
 .Table td {
-  @apply overflow-y-auto first:rounded-l-md last:rounded-r-md;
-  padding: 6px;
+  @apply p-2 overflow-y-auto first:rounded-l-md last:rounded-r-md;
 }
