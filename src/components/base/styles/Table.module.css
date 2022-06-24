@@ -18,7 +18,7 @@
   @apply bg-slate-300;
 }
 
-:global(.dark) tr:nth-child(2n) {
+:global(.dark) .Table tr:nth-child(2n) {
   @apply bg-slate-700 !important;
 }
 
