@@ -1,3 +1,7 @@
+.TodosTable {
+  @apply mt-4;
+}
+
 .TodosTable .row {
   display: grid;
   grid-template-columns: 0.1fr 1fr 0.3fr 0.2fr;
