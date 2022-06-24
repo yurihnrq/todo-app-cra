@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { CheckIcon, MenuIcon, CloseIcon, MoonIcon, SunIcon } from './Icons';
@@ -10,6 +10,7 @@ const Header: React.FC = () => {
   const { user, logout } = useAuthContext();
   const [theme, setTheme] = useTheme();
   const [sideNav, setSideNav] = useState<boolean>(false);
+  const sideNavRef = useRef(null);
 
   return (
     <header className={styles.Header}>
@@ -58,6 +59,7 @@ const Header: React.FC = () => {
         <CSSTransition
           in={sideNav}
           timeout={150}
+          nodeRef={sideNavRef}
           unmountOnExit
           classNames={{
             enter: styles.sideNavEnter,
@@ -65,7 +67,7 @@ const Header: React.FC = () => {
             exit: styles.sideNavExit,
             exitActive: styles.sideNavExitActive
           }}>
-          <div className={styles.sideNav}>
+          <div ref={sideNavRef} className={styles.sideNav}>
             <nav>
               <Link to='/' onClick={() => setSideNav(!sideNav)}>
                 Inicio
