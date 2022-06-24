@@ -14,7 +14,7 @@ const Modal: React.FC<IModal> = ({ title, children, onClose }) => {
         <header>
           <h1 className={styles.title}>{title}</h1>
           <button onClick={onClose} className={styles.closeButton}>
-            {CloseIcon}
+            <CloseIcon />
           </button>
         </header>
         <section>{children}</section>
