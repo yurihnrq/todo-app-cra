@@ -1,0 +1,3 @@
+.CategoriesTable td {
+  @apply last:text-right;
+}

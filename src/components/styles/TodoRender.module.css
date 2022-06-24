@@ -17,7 +17,7 @@
 }
 
 .TodosTable td {
-  @apply flex justify-center overflow-auto;
+  @apply flex justify-center overflow-auto last:justify-end;
 }
 
 .TodosTable td::-webkit-scrollbar {
@@ -38,10 +38,6 @@
 /* Handle on hover */
 .TodosTable td::-webkit-scrollbar-thumb:hover {
   background: #555;
-}
-
-.TodosTable td:last-child {
-  @apply justify-end;
 }
 
 @media (max-width: 640px) {

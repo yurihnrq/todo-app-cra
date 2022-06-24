@@ -1,8 +1,10 @@
 import React from 'react';
 import Button from '../components/base/Button';
 import { TrashIcon } from '../components/base/Icons';
+import Table from '../components/base/Table';
 import Layout from '../components/Layout';
 import { useTodoContext } from '../context/TodoContext';
+import styles from './styles/Categories.module.css';
 
 const Categories: React.FC = () => {
   const { categories, deleteCategory } = useTodoContext();
@@ -10,8 +12,7 @@ const Categories: React.FC = () => {
   return (
     <Layout>
       <section>
-        <h1>Categorias</h1>
-        <table>
+        <Table className={styles.CategoriesTable} caption='Categorias'>
           <tbody>
             {categories.map(category =>
               category !== 'default' ? (
@@ -23,14 +24,14 @@ const Categories: React.FC = () => {
                       label='Delete ToDo'
                       className='m-1'
                       onClick={() => deleteCategory(category)}>
-                      {TrashIcon}
+                      <TrashIcon />
                     </Button>
                   </td>
                 </tr>
               ) : null
             )}
           </tbody>
-        </table>
+        </Table>
       </section>
     </Layout>
   );
