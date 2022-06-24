@@ -1,0 +1,23 @@
+.Table {
+  @apply mt-3;
+}
+
+.Table caption {
+  @apply font-medium text-left;
+}
+
+.Table th {
+  @apply text-xl;
+}
+
+.Table tr {
+  @apply p-1 rounded-md;
+}
+
+.Table tr:nth-child(2n) {
+  @apply bg-slate-300;
+}
+
+:global(.dark) tr:nth-child(2n) {
+  @apply bg-slate-700 !important;
+}
