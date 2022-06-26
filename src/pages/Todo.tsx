@@ -19,8 +19,10 @@ const Home: React.FC = () => {
           </h2>
           <div className={styles.todoContainer}>
             <TodoForm />
-            <CategoryTabs />
-            {todos.length > 0 ? <TodoRender /> : null}
+            <section className={styles.renderSection}>
+              <CategoryTabs />
+              {todos.length > 0 ? <TodoRender /> : null}
+            </section>
           </div>
         </section>
       </Layout>

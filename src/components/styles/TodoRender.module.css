@@ -21,7 +21,8 @@
 }
 
 .TodosTable td {
-  @apply flex justify-center overflow-auto last:justify-end;
+  @apply flex justify-center overflow-auto;
+  @apply first:overflow-hidden last:justify-end last:overflow-hidden;
 }
 
 .TodosTable td::-webkit-scrollbar {
