@@ -3,8 +3,11 @@
 }
 
 .Layout .content {
-  @apply px-5 pt-4 pb-20 sm:px-8 sm:pt-8 sm:pb-24;
+  @apply px-5 pt-4 pb-20 sm:px-8 sm:pt-8 sm:pb-24 flex flex-row;
   min-height: calc(100vh - 5rem);
+}
+.Layout .content > * {
+  @apply first:w-full;
 }
 
 .Layout .spinnerContainer {

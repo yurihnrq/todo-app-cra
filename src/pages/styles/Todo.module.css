@@ -1,5 +1,5 @@
 .Todo {
-  @apply flex flex-col mx-auto h-full relative;
+  @apply mx-auto min-h-full relative;
   max-width: 800px;
 }
 
