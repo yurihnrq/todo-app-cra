@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTodoContext } from '../context/TodoContext';
+import Alert from './base/Alert';
 import Button from './base/Button';
 import Form from './base/Form';
 import { PlusIcon } from './base/Icons';
@@ -11,6 +12,21 @@ const CategoryTabs: React.FC = () => {
   const { categories, selectCategory, selectedCategory, addCategory } = useTodoContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [category, setCategory] = useState('');
+  const [error, setError] = useState<string | null>(null);
+
+  const submitCategory: React.MouseEventHandler = e => {
+    e.preventDefault();
+
+    if (!category || category.trim().length <= 3) {
+      setError('O nome de uma categoria deve ter mais de 3 caracteres.');
+      return;
+    }
+
+    addCategory(category);
+    setCategory('');
+    setIsModalOpen(false);
+    setError(null);
+  };
 
   return (
     <div className={styles.CategoryTabs}>
@@ -31,8 +47,14 @@ const CategoryTabs: React.FC = () => {
         <PlusIcon />
       </button>
       {isModalOpen && (
-        <Modal onClose={() => setIsModalOpen(false)} title='Insira uma categoria'>
+        <Modal
+          onClose={() => {
+            setError(null);
+            setIsModalOpen(false);
+          }}
+          title='Insira uma categoria'>
           <Form onSubmit={e => e.preventDefault()}>
+            {error ? <Alert color='blue'>{error}</Alert> : null}
             <Input
               type='text'
               value={category}
@@ -42,10 +64,7 @@ const CategoryTabs: React.FC = () => {
               className={styles.modalButton}
               color='blue'
               label='dale'
-              onClick={() => {
-                addCategory(category);
-                setIsModalOpen(false);
-              }}>
+              onClick={submitCategory}>
               Adicionar
             </Button>
           </Form>
