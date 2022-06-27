@@ -6,8 +6,9 @@
   @apply px-5 pt-4 sm:p-6 flex flex-row;
   min-height: calc(100vh - 5rem);
 }
+
 .Layout .content > * {
-  @apply first:w-full;
+  @apply grow;
 }
 
 .Layout .spinnerContainer {

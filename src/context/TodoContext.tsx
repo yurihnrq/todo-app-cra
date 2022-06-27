@@ -9,6 +9,7 @@ import usePersistentState from '../hooks/usePersistentState';
 
 interface ITodoContext {
   todos: Todo[];
+  loading: boolean;
   categories: string[];
   selectedCategory: string;
   error: string | null;
@@ -22,6 +23,7 @@ interface ITodoContext {
 
 const initialContext: ITodoContext = {
   todos: [],
+  loading: true,
   categories: [],
   selectedCategory: 'default',
   error: null,
@@ -56,6 +58,7 @@ const TodoProvider: React.FC = ({ children }) => {
   const [categories, setCategories] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = usePersistentState<string>('category', 'default');
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const todoRepository: ITodoRepository = new FirebaseTodoRepository();
   const categoryRepository: ICategoryRepository = new FirebaseCategoryRepository();
@@ -89,6 +92,8 @@ const TodoProvider: React.FC = ({ children }) => {
       setError('Erro: ' + err);
       console.error(error);
     }
+
+    setLoading(false);
   }, [user, error, selectedCategory]);
 
   const addTodo = useCallback(
@@ -217,6 +222,7 @@ const TodoProvider: React.FC = ({ children }) => {
     <TodoContext.Provider
       value={{
         todos,
+        loading,
         categories,
         selectedCategory,
         error,
