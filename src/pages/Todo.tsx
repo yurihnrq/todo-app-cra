@@ -21,7 +21,11 @@ const Home: React.FC = () => {
             </div>
             <section>
               <CategoryTabs />
-              {todos.length > 0 ? <TodoRender /> : null}
+              {todos.length > 0 ? (
+                <TodoRender />
+              ) : (
+                <p className={styles.todoMessage}>Nenhuma tarefa cadastrada. 📝</p>
+              )}
             </section>
           </div>
         </section>
