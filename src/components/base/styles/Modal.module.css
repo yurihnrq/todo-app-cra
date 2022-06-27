@@ -1,0 +1,22 @@
+.Modal {
+  @apply fixed top-0 left-0 right-0 bottom-0;
+  @apply h-screen w-screen z-10;
+  background-color: rgba(0, 0, 0, 0.55);
+}
+
+.Modal .content {
+  @apply max-w-lg m-auto top-1/2 relative -translate-y-1/2;
+  @apply bg-slate-100 text-gray-800 rounded-md p-4;
+}
+
+:global(.dark) .Modal .content {
+  @apply bg-slate-600 text-slate-100;
+}
+
+.Modal header {
+  @apply flex justify-between items-center;
+}
+
+.Modal .title {
+  @apply text-xl font-medium mb-2;
+}

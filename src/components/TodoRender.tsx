@@ -4,6 +4,7 @@ import Todo from '../core/Todo';
 import { TrashIcon } from './base/Icons';
 import Button from './base/Button';
 import styles from './styles/TodoRender.module.css';
+import Table from './base/Table';
 
 const TodoRender: React.FC = () => {
   const { todos, updateTodo, deleteTodo } = useTodoContext();
@@ -31,8 +32,8 @@ const TodoRender: React.FC = () => {
         </td>
         <td className={styles.date}>{todo.createdAt.toLocaleDateString('pt-BR')}</td>
         <td>
-          <Button color='red' label='Delete ToDo' className='m-1' onClick={() => deleteTodo(todo)}>
-            {TrashIcon}
+          <Button color='red' label='Delete ToDo' onClick={() => deleteTodo(todo)}>
+            <TrashIcon />
           </Button>
         </td>
       </tr>
@@ -42,16 +43,14 @@ const TodoRender: React.FC = () => {
   return (
     <>
       {undoneTodos.length > 0 ? (
-        <table className={styles.Table}>
-          <caption>A fazer:</caption>
+        <Table caption='A fazer:' className={styles.TodosTable}>
           <tbody>{renderTodos(undoneTodos)}</tbody>
-        </table>
+        </Table>
       ) : null}
       {doneTodos.length > 0 ? (
-        <table className={styles.Table}>
-          <caption>Concluído:</caption>
+        <Table caption='Concluído:' className={styles.TodosTable}>
           <tbody>{renderTodos(doneTodos)}</tbody>
-        </table>
+        </Table>
       ) : null}
     </>
   );

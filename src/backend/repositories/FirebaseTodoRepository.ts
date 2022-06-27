@@ -37,6 +37,19 @@ class FirebaseTodoRepository implements ITodoRepository {
     });
   }
 
+  async deleteByCategory(user: User, category: string): Promise<void> {
+    const todoQuery = query(
+      collection(database, 'todos', user.uid, category),
+      where('category', '==', category)
+    );
+
+    const todoSnapshot = await getDocs(todoQuery);
+
+    todoSnapshot.forEach(doc => {
+      deleteDoc(doc.ref);
+    });
+  }
+
   async update(todo: Todo, user: User): Promise<void> {
     const todoQuery = query(
       collection(database, 'todos', user.uid, todo.category),
@@ -66,7 +79,7 @@ class FirebaseTodoRepository implements ITodoRepository {
     todosSnapshot.forEach(doc => {
       const todo = doc.data();
       todos.push(
-        new Todo(todo.description, todo.done, new Date(todo.createdAt), todo.categry, todo.id)
+        new Todo(todo.description, todo.done, new Date(todo.createdAt), todo.category, todo.id)
       );
     });
 
