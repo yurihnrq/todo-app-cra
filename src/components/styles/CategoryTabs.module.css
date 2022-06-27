@@ -1,9 +1,13 @@
 .CategoryTabs {
-  @apply flex flex-row overflow-x-auto overflow-y-hidden;
+  @apply flex flex-row overflow-hidden;
 }
 
 .CategoryTabs .tabList {
-  @apply flex flex-row;
+  @apply flex flex-row overflow-auto flex-nowrap;
+}
+
+.CategoryTabs .tabList::-webkit-scrollbar {
+  @apply h-2;
 }
 
 .CategoryTabs .tabItem {
