@@ -11,7 +11,7 @@
 }
 
 .CategoryTabs .tabItem {
-  @apply text-center h-8 px-2 mx-2 cursor-pointer relative whitespace-nowrap;
+  @apply shrink-0 text-center h-8 px-2 mx-2 cursor-pointer relative whitespace-nowrap;
   @apply first:ml-0 last:mr-0;
   min-width: 8rem;
 }
