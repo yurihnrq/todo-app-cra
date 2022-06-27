@@ -33,3 +33,7 @@
 .CategoryTabs .modalButton {
   @apply w-24 ml-auto;
 }
+
+.CategoryTabs .modalAlert {
+  @apply mb-3;
+}

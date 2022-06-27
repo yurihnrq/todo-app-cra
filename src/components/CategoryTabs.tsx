@@ -54,7 +54,11 @@ const CategoryTabs: React.FC = () => {
           }}
           title='Insira uma categoria'>
           <Form onSubmit={e => e.preventDefault()}>
-            {error ? <Alert color='blue'>{error}</Alert> : null}
+            {error ? (
+              <Alert className={styles.modalAlert} color='blue'>
+                {error}
+              </Alert>
+            ) : null}
             <Input
               type='text'
               value={category}
