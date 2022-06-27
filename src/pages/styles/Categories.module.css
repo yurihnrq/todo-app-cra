@@ -6,6 +6,10 @@
   @apply last:text-right;
 }
 
+.categoriesMessage {
+  @apply flex justify-center text-xl;
+}
+
 .buttonContainer {
   @apply flex justify-end mt-3;
 }

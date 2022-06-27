@@ -15,28 +15,34 @@ const Categories: React.FC = () => {
   return (
     <Layout>
       <section>
-        <Table className={styles.categoriesTable} caption='Categorias'>
-          <tbody>
-            {categories.map(category =>
-              category !== 'default' ? (
-                <tr key={category}>
-                  <td>{category}</td>
-                  <td>
-                    <Button
-                      color='red'
-                      label='Delete ToDo'
-                      onClick={() => {
-                        setCategoryToDelete(category);
-                        setIsModalOpen(true);
-                      }}>
-                      <TrashIcon />
-                    </Button>
-                  </td>
-                </tr>
-              ) : null
-            )}
-          </tbody>
-        </Table>
+        {categories.length > 1 ? (
+          <Table className={styles.categoriesTable} caption='Categorias'>
+            <tbody>
+              {categories.map(category =>
+                category !== 'default' ? (
+                  <tr key={category}>
+                    <td>{category}</td>
+                    <td>
+                      <Button
+                        color='red'
+                        label='Delete ToDo'
+                        onClick={() => {
+                          setCategoryToDelete(category);
+                          setIsModalOpen(true);
+                        }}>
+                        <TrashIcon />
+                      </Button>
+                    </td>
+                  </tr>
+                ) : null
+              )}
+            </tbody>
+          </Table>
+        ) : (
+          <span className={styles.categoriesMessage}>
+            Não há categorias adicionais cadastradas. 🤔
+          </span>
+        )}
       </section>
       {isModalOpen ? (
         <Modal title='Exclusão' onClose={() => setIsModalOpen(false)}>
