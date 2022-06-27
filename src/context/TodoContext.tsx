@@ -65,6 +65,8 @@ const TodoProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     if (categories.length === 0) addCategory('default');
+    if (categories.length > 1 && !categories.includes(selectedCategory))
+      setSelectedCategory('default');
   }, [categories]);
 
   useEffect(() => {
