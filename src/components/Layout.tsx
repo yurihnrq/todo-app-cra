@@ -1,5 +1,4 @@
 import React from 'react';
-import Footer from './base/Footer';
 import Header from './base/Header';
 import styles from './styles/Layout.module.css';
 import { useAuthContext } from '../context/AuthContext';
@@ -20,7 +19,6 @@ const Layout: React.FC = ({ children }) => {
           children
         )}
       </main>
-      <Footer />
     </div>
   );
 };
