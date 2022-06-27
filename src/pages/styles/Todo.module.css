@@ -12,9 +12,13 @@
 }
 
 .Todo .formContainer {
-  @apply fixed bottom-0 left-0 bg-slate-600;
+  @apply fixed bottom-0 left-0 bg-slate-100;
   @apply w-full z-10 px-5 py-1;
   @apply sm:relative sm:p-0 sm:pb-4;
+}
+
+:global(.dark) .Todo .formContainer {
+  @apply bg-slate-600;
 }
 
 .Todo .todoContainer {
