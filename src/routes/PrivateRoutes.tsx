@@ -7,9 +7,11 @@ import Loading from '../pages/Loading';
 const PrivateRoutes: React.FC = () => {
   const { user, loading: userLoading } = useAuthContext();
   const { loading: todosLoading } = useTodoContext();
-  if (userLoading || todosLoading) return <Loading />;
-  if (user) return <Outlet />;
-  else return <Navigate to='/login' />;
+  if (userLoading) return <Loading />;
+  if (user) {
+    if (todosLoading) return <Loading />;
+    return <Outlet />;
+  } else return <Navigate to='/login' />;
 };
 
 export default PrivateRoutes;
