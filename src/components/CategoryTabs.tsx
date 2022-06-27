@@ -50,6 +50,7 @@ const CategoryTabs: React.FC = () => {
         <Modal
           onClose={() => {
             setError(null);
+            setCategory('');
             setIsModalOpen(false);
           }}
           title='Insira uma categoria'>
