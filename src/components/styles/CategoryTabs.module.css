@@ -1,5 +1,6 @@
 .CategoryTabs {
   @apply flex flex-row overflow-hidden;
+  
 }
 
 .CategoryTabs .tabList {

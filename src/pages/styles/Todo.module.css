@@ -1,5 +1,5 @@
 .Todo {
-  @apply mx-auto min-h-full relative;
+  @apply mx-auto min-h-full relative overflow-hidden;
   max-width: 800px;
 }
 
