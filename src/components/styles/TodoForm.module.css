@@ -1,14 +1,10 @@
 .Form {
-  @apply flex flex-col justify-center sm:justify-between flex-wrap;
+  @apply flex flex-col-reverse sm:flex-col flex-wrap justify-center w-full;
+  @apply sm:justify-between;
 }
 
 .Form div {
-  @apply flex items-center mb-2;
-}
-
-.Form .warning {
-  @apply p-2 rounded-md bg-red-100 border-red-400 border-2;
-  @apply text-red-600 font-medium mb-3 text-center;
+  @apply flex items-center mb-0 sm:mb-3;
 }
 
 .Form .addButton {
@@ -17,8 +13,4 @@
 
 .Form .addButton span {
   @apply hidden sm:inline-block;
-}
-
-.Form .addButton svg {
-  @apply inline h-7;
 }

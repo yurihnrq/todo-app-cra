@@ -1,5 +1,5 @@
 .Alert {
-  @apply p-2 mb-3 rounded-md border-2 font-medium;
+  @apply p-2 rounded-md border-2 font-medium;
 }
 
 .Alert.red {

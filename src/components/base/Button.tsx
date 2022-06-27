@@ -7,7 +7,6 @@ interface IButton {
   color: 'red' | 'blue' | 'green';
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
-  icon?: React.ReactNode;
 }
 
 const Button: React.FC<IButton> = ({
@@ -16,8 +15,7 @@ const Button: React.FC<IButton> = ({
   label,
   color,
   onClick,
-  disabled,
-  icon
+  disabled
 }) => {
   return (
     <button
@@ -25,7 +23,6 @@ const Button: React.FC<IButton> = ({
       aria-label={label}
       onClick={onClick}
       disabled={disabled}>
-      {icon}
       {children}
     </button>
   );

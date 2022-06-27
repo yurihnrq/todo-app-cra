@@ -1,0 +1,27 @@
+.Table {
+  @apply w-full;
+}
+
+.Table caption {
+  @apply font-medium text-left;
+}
+
+.Table th {
+  @apply text-xl;
+}
+
+.Table tr {
+  @apply rounded-md overflow-auto;
+}
+
+.Table tr:nth-child(2n) {
+  @apply bg-slate-300;
+}
+
+:global(.dark) .Table tr:nth-child(2n) {
+  @apply bg-slate-700 !important;
+}
+
+.Table td {
+  @apply p-2 overflow-y-auto first:rounded-l-md last:rounded-r-md;
+}

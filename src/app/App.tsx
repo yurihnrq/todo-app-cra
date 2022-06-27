@@ -11,6 +11,7 @@ import AuthContext from '../context/AuthContext';
 import PublicRoutes from '../routes/PublicRoutes';
 import PrivateRoutes from '../routes/PrivateRoutes';
 import TodoContext from '../context/TodoContext';
+import Categories from '../pages/Categories';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
               <Route path='/cadastro' element={<Signup />} />
             </Route>
             <Route element={<PrivateRoutes />}>
+              <Route path='/categorias' element={<Categories />} />
               <Route path='/' element={<Todo />} />
             </Route>
           </Routes>

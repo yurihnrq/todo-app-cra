@@ -1,0 +1,19 @@
+.categoriesTable {
+  @apply max-w-3xl mx-auto;
+}
+
+.categoriesTable td {
+  @apply last:text-right;
+}
+
+.categoriesMessage {
+  @apply flex justify-center text-xl;
+}
+
+.buttonContainer {
+  @apply flex justify-end mt-3;
+}
+
+.buttonContainer button {
+  @apply last:ml-3;
+}

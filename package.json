@@ -1,6 +1,6 @@
 {
 	"name": "frontend",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"private": true,
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.16.1",
@@ -17,6 +17,7 @@
 		"react-scripts": "5.0.0",
 		"react-transition-group": "^4.4.2",
 		"typescript": "^4.5.4",
+		"uuid": "^8.3.2",
 		"web-vitals": "^2.1.3",
 		"workbox-background-sync": "^5.1.4",
 		"workbox-broadcast-update": "^5.1.4",
@@ -58,6 +59,7 @@
 	},
 	"devDependencies": {
 		"@types/react-transition-group": "^4.4.4",
+		"@types/uuid": "^8.3.4",
 		"@typescript-eslint/eslint-plugin": "^5.9.0",
 		"@typescript-eslint/parser": "^5.9.0",
 		"autoprefixer": "^10.4.2",
