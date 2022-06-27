@@ -14,12 +14,12 @@ const Home: React.FC = () => {
     return (
       <Layout>
         <section className={styles.Todo}>
-          <h2 className='dark:text-slate-200'>
-            Olá {user.email?.slice(0, user?.email?.indexOf('@'))}
-          </h2>
+          <h2 className={styles.userText}>Olá {user.email?.slice(0, user?.email?.indexOf('@'))}</h2>
           <div className={styles.todoContainer}>
-            <TodoForm />
-            <section className={styles.renderSection}>
+            <div className={styles.formContainer}>
+              <TodoForm />
+            </div>
+            <section>
               <CategoryTabs />
               {todos.length > 0 ? <TodoRender /> : null}
             </section>
