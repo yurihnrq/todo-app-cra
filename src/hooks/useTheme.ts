@@ -1,22 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import usePersistentState from './usePersistentState';
 
 const useTheme = () => {
-  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-    const storedTheme = localStorage.getItem('theme');
-    if (storedTheme && storedTheme === 'dark') return 'dark';
-    return 'light';
-  });
+  const [theme, setTheme] = usePersistentState<'light' | 'dark'>('theme', 'light');
 
   useEffect(() => {
     const root = document.querySelector('html');
-
-    if (theme === 'dark') {
-      localStorage.setItem('theme', 'dark');
-      root?.classList.add('dark');
-    } else {
-      localStorage.setItem('theme', 'light');
-      root?.classList.remove('dark');
-    }
+    root?.classList.add(theme);
   }, [theme]);
 
   return [theme, setTheme] as const;

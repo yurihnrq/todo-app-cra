@@ -5,6 +5,7 @@ import { ITodoRepository } from '../core/ITodoRepository';
 import { useAuthContext } from './AuthContext';
 import ICategoryRepository from '../core/ICategoryRepository';
 import FirebaseCategoryRepository from '../backend/repositories/FirebaseCategoryRepository';
+import usePersistentState from '../hooks/usePersistentState';
 
 interface ITodoContext {
   todos: Todo[];
@@ -53,7 +54,7 @@ const TodoProvider: React.FC = ({ children }) => {
 
   const [todos, setTodos] = useState<Todo[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>('default');
+  const [selectedCategory, setSelectedCategory] = usePersistentState<string>('category', 'default');
   const [error, setError] = useState<string | null>(null);
 
   const todoRepository: ITodoRepository = new FirebaseTodoRepository();
@@ -154,6 +155,8 @@ const TodoProvider: React.FC = ({ children }) => {
       const defaultIndex = categories.findIndex(c => c === 'default');
       categories.splice(defaultIndex, 1);
       categories.unshift('default');
+
+      if (!categories.includes(selectedCategory)) setSelectedCategory('default');
 
       setCategories(categories);
 
