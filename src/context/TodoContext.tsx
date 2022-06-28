@@ -106,7 +106,7 @@ const TodoProvider: React.FC = ({ children }) => {
         const todoObj = new Todo(todo, false, new Date(), selectedCategory);
         await todoRepository.save(todoObj, user);
 
-        getTodos();
+        setTodos(prevState => [...prevState, todoObj]);
 
         if (error !== null) setError(null);
       } catch (err) {
@@ -124,7 +124,7 @@ const TodoProvider: React.FC = ({ children }) => {
       try {
         await todoRepository.delete(todo, user);
 
-        getTodos();
+        setTodos(prevState => prevState.filter(t => t.id !== todo.id));
 
         if (error !== null) setError(null);
       } catch (err) {
@@ -142,7 +142,7 @@ const TodoProvider: React.FC = ({ children }) => {
       try {
         await todoRepository.update(todo, user);
 
-        getTodos();
+        setTodos(prevState => prevState.map(t => (t.id === todo.id ? todo : t)));
 
         if (error !== null) setError(null);
       } catch (err) {
@@ -182,7 +182,7 @@ const TodoProvider: React.FC = ({ children }) => {
         if (await categoryRepository.doesCategoryExist(category, user)) return;
         await categoryRepository.save(category, user);
 
-        getCategories();
+        setCategories(prevState => [...prevState, category]);
 
         if (error !== null) setError(null);
       } catch (err) {
@@ -202,7 +202,7 @@ const TodoProvider: React.FC = ({ children }) => {
 
         await categoryRepository.delete(category, user);
 
-        getCategories();
+        setCategories(prevState => prevState.filter(c => c !== category));
 
         if (error !== null) setError(null);
       } catch (err) {
