@@ -1,6 +1,6 @@
 import { database } from '../firebase';
 import { User } from 'firebase/auth';
-import { collection, addDoc, getDocs, deleteDoc, query, where } from 'firebase/firestore';
+import { collection, addDoc, getDocs, deleteDoc, query, where, orderBy } from 'firebase/firestore';
 import ICategoryRepository from '../../core/ICategoryRepository';
 
 class FirebaseCategoryRepository implements ICategoryRepository {
@@ -19,7 +19,8 @@ class FirebaseCategoryRepository implements ICategoryRepository {
 
   async save(category: string, user: User): Promise<void> {
     await addDoc(collection(database, 'categories', user.uid, 'data'), {
-      name: category
+      name: category,
+      date: new Date()
     });
   }
 
@@ -39,7 +40,10 @@ class FirebaseCategoryRepository implements ICategoryRepository {
   async getAll(user: User): Promise<string[]> {
     const categories: string[] = [];
 
-    const categoryQuery = query(collection(database, 'categories', user.uid, 'data'));
+    const categoryQuery = query(
+      collection(database, 'categories', user.uid, 'data'),
+      orderBy('date', 'asc')
+    );
 
     const categorySnapshot = await getDocs(categoryQuery);
 

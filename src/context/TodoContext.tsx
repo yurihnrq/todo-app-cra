@@ -106,7 +106,7 @@ const TodoProvider: React.FC = ({ children }) => {
         const todoObj = new Todo(todo, false, new Date(), selectedCategory);
         await todoRepository.save(todoObj, user);
 
-        setTodos(prevState => [...prevState, todoObj]);
+        setTodos(prevState => [todoObj, ...prevState]);
 
         if (error !== null) setError(null);
       } catch (err) {
@@ -158,12 +158,6 @@ const TodoProvider: React.FC = ({ children }) => {
 
     try {
       const categories = await categoryRepository.getAll(user);
-
-      const defaultIndex = categories.findIndex(c => c === 'default');
-      categories.splice(defaultIndex, 1);
-      categories.unshift('default');
-
-      if (!categories.includes(selectedCategory)) setSelectedCategory('default');
 
       setCategories(categories);
 
