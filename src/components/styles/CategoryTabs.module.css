@@ -3,7 +3,7 @@
 }
 
 .CategoryTabs .tabList {
-  @apply flex flex-row overflow-auto flex-nowrap;
+  @apply flex flex-row overflow-auto flex-nowrap pb-3 sm:pb-2;
 }
 
 .CategoryTabs .tabList::-webkit-scrollbar {

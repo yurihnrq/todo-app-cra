@@ -1,5 +1,5 @@
 .TodosTable {
-  @apply mt-4;
+  @apply mt-1 sm:mt-2;
 }
 
 .TodosTable .row {
