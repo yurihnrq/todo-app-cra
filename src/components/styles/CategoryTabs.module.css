@@ -1,6 +1,5 @@
 .CategoryTabs {
   @apply flex flex-row overflow-hidden;
-  
 }
 
 .CategoryTabs .tabList {
@@ -8,7 +7,7 @@
 }
 
 .CategoryTabs .tabList::-webkit-scrollbar {
-  @apply h-2;
+  @apply sm:h-2;
 }
 
 .CategoryTabs .tabItem {

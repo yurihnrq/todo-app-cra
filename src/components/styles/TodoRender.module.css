@@ -26,7 +26,7 @@
 }
 
 .TodosTable td::-webkit-scrollbar {
-  @apply h-1;
+  @apply sm:h-1;
 }
 
 @media (max-width: 640px) {
