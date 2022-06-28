@@ -27,7 +27,7 @@
 }
 
 .CategoryTabs .button {
-  @apply ml-2;
+  @apply ml-2 flex justify-center items-start;
 }
 
 .CategoryTabs .modalButton {
